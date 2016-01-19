@@ -30,7 +30,7 @@ function sparqlRequest(siteDomain, query) {
 }
 
 function getList(){
-    alert(document.getElementById("demo").getAttributeNode());
+    alert(document.getElementById("demo").getAttribute("value"));
     document.getElementById("demo").innerHTML;
 }
 
