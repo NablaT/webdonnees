@@ -85,7 +85,7 @@ Requete pour recuperer tous les albums d'un chanteur
 
 SELECT DISTINCT ?album ?date 
 	WHERE {
-		<http://fr.dbpedia.org/resource/Maître_Gims> dbpedia-owl:wikiPageWikiLink ?album
+		<http://fr.dbpedia.org/resource/U2> dbpedia-owl:wikiPageWikiLink ?album
 		. ?album dbpedia-owl:releaseDate ?date
 		.filter(exists{?album rdf:type dbpedia-owl:Album})
 	}
@@ -105,5 +105,17 @@ SELECT DISTINCT ?list ?value
 		.filter(exists{?list dbpedia-owl:recordDate ?members})
 		.filter(?list!=?value)
 	}
+	
+	
+	SELECT DISTINCT ?value ?album
+	WHERE {
+		{SELECT DISTINCT ?value 
+			WHERE {
+				<http://fr.dbpedia.org/resource/Yesterday> dbpedia-owl:wikiPageWikiLink ?value
+			}
+		}
+		.filter(exists{?value dbpedia-owl:album ?album})
+	}
+	
 	
 	

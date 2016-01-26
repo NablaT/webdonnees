@@ -32,7 +32,12 @@ function youtubeRequest(title, artist) {
             dataType: "jsonp",
             url: query2,
             success: function (data) {
+<<<<<<< HEAD:js/youtuberequest.js
                 alert("Nombre de vue de "+title+" par "+artist+" : "+data.items[0].statistics.viewCount);
+=======
+                console.log(data.items[0].statistics.viewCount);
+                document.getElementById("youtube").innerHTML = data.items[0].statistics.viewCount;
+>>>>>>> 89d923f62532438531af6e1d6c3bfe869c3f03d9:youtuberequest.js
             }
         });
     });
