@@ -33,6 +33,7 @@ function youtubeRequest(title, artist) {
             url: query2,
             success: function (data) {
                 console.log(data.items[0].statistics.viewCount);
+                document.getElementById("youtube").innerHTML = data.items[0].statistics.viewCount;
             }
         });
     });
