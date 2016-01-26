@@ -4,7 +4,7 @@
 
 var KEY_API = "AIzaSyDbwRQvCvTn8R2GBrwmMiWWoAb5hC_Zv9k";
 
-youtubeRequest("beatles", "yesterday");
+youtubeRequest("yesterday", "beatles");
 
 
 function youtubeSearch(title, artist, callback) {
@@ -32,7 +32,7 @@ function youtubeRequest(title, artist) {
             dataType: "jsonp",
             url: query2,
             success: function (data) {
-                console.log(data.items[0].statistics.viewCount);
+                alert("Nombre de vue de "+title+" par "+artist+" : "+data.items[0].statistics.viewCount);
             }
         });
     });

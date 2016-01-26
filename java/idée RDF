@@ -1,0 +1,26 @@
+<Profil ID="Personne">
+	
+	<Periodes>
+		<Lundi>
+			<Musiques>
+				<Musique>
+					<NombreDEcoute></NombreDEcoute>
+					<Description></Description>
+					<Genre></Genre>
+					<MusiquesAssociees>
+						<Musique></Musique>
+					</MusiquesAssociees>
+				</Musique>
+				.
+				.
+				.
+			</Musiques>
+		</Lundi>
+		.
+		.
+		.
+		<Dimanche>
+			
+		</Dimanche>
+	</Periodes>
+</Profil>
