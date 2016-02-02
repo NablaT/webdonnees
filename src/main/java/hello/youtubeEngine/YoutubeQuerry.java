@@ -21,11 +21,8 @@
         import com.google.api.services.youtube.YouTube;
         import com.google.api.services.youtube.model.*;
 
-        import java.io.BufferedReader;
         import java.io.IOException;
         import java.io.InputStream;
-        import java.io.InputStreamReader;
-        import java.util.Iterator;
         import java.util.List;
         import java.util.Properties;
 
@@ -40,7 +37,6 @@ public class YoutubeQuerry {
      * Define a global variable that identifies the name of a file that
      * contains the developer's API youtube.properties.
      */
-    private final String PROPERTIES_FILENAME = "youtube.properties";
 
     private final long NUMBER_OF_VIDEOS_RETURNED = 1;
 
@@ -56,18 +52,6 @@ public class YoutubeQuerry {
      *
      */
     public String youtubeRequest(String artist, String title) {
-        // Read the developer youtube.properties from the properties file.
-        Properties properties = new Properties();
-        try {
-            InputStream in = YouTube.Search.class.getResourceAsStream("/" + PROPERTIES_FILENAME);
-            properties.load(in);
-
-        } catch (IOException e) {
-            System.err.println("There was an error reading " + PROPERTIES_FILENAME + ": " + e.getCause()
-                    + " : " + e.getMessage());
-            System.exit(1);
-        }
-
         try {
             // This object is used to make YouTube Data API requests. The last
             // argument is required, but since we don't need anything
@@ -88,7 +72,7 @@ public class YoutubeQuerry {
             // Set your developer youtube.properties from the Google Developers Console for
             // non-authenticated requests. See:
             // https://console.developers.google.com/
-            String apiKey = properties.getProperty("youtube.apikey");
+            String apiKey = "AIzaSyDbwRQvCvTn8R2GBrwmMiWWoAb5hC_Zv9k";
             search.setKey(apiKey);
             search.setQ(queryTerm);
             // Restrict the search results to only include videos. See:
