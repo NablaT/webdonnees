@@ -40,23 +40,22 @@ public class YoutubeQuerry {
      * Define a global variable that identifies the name of a file that
      * contains the developer's API youtube.properties.
      */
-    private static final String PROPERTIES_FILENAME = "youtube.properties";
+    private final String PROPERTIES_FILENAME = "youtube.properties";
 
-    private static final long NUMBER_OF_VIDEOS_RETURNED = 1;
+    private final long NUMBER_OF_VIDEOS_RETURNED = 1;
 
     /**
      * Define a global instance of a Youtube object, which will be used
      * to make YouTube Data API requests.
      */
-    private static YouTube youtube;
+    private YouTube youtube;
 
     /**
      * Initialize a YouTube object to search for videos on YouTube. Then
      * display the name and thumbnail image of each video in the result set.
      *
-     * @param args command line args.
      */
-    public static void main(String[] args) {
+    public String youtubeRequest(String artist, String title) {
         // Read the developer youtube.properties from the properties file.
         Properties properties = new Properties();
         try {
@@ -81,7 +80,7 @@ public class YoutubeQuerry {
             }).setApplicationName("youtube-cmdline-search-sample").build();
 
             // Prompt the user to enter a query term.
-            String queryTerm = getInputQuery();
+            String queryTerm = artist + "." + title;
 
             // Define the API request for retrieving search results.
             YouTube.Search.List search = youtube.search().list("id,snippet");
@@ -105,13 +104,12 @@ public class YoutubeQuerry {
             SearchListResponse searchResponse = search.execute();
             List<SearchResult> searchResultList = searchResponse.getItems();
 
-            YouTube.Videos.List listVideosRequest = youtube.videos().list("statistics").setId(""+searchResultList.get(0).getId().getVideoId()).setKey(apiKey);
+            YouTube.Videos.List listVideosRequest = youtube.videos().list("statistics").setId("" + searchResultList.get(0).getId().getVideoId()).setKey(apiKey);
             VideoListResponse listResponse = listVideosRequest.execute();
             List<Video> videoList = listResponse.getItems();
 
             if (searchResultList != null && videoList != null) {
-                prettyPrint(searchResultList.iterator(), queryTerm);
-                System.out.println(videoList.get(0).getStatistics().getViewCount());
+                return ""+videoList.get(0).getStatistics().getViewCount();
             }
         } catch (GoogleJsonResponseException e) {
             System.err.println("There was a service error: " + e.getDetails().getCode() + " : "
@@ -121,60 +119,7 @@ public class YoutubeQuerry {
         } catch (Throwable t) {
             t.printStackTrace();
         }
-    }
 
-    /*
-     * Prompt the user to enter a query term and return the user-specified term.
-     */
-    private static String getInputQuery() throws IOException {
-
-        String inputQuery = "";
-
-        System.out.print("Please enter a search term: ");
-        BufferedReader bReader = new BufferedReader(new InputStreamReader(System.in));
-        inputQuery = bReader.readLine();
-
-        if (inputQuery.length() < 1) {
-            // Use the string "YouTube Developers Live" as a default.
-            inputQuery = "YouTube Developers Live";
-        }
-        return inputQuery;
-    }
-
-    /*
-     * Prints out all results in the Iterator. For each result, print the
-     * title, video ID, and thumbnail.
-     *
-     * @param iteratorSearchResults Iterator of SearchResults to print
-     *
-     * @param query Search query (String)
-     */
-    private static void prettyPrint(Iterator<SearchResult> iteratorSearchResults, String query) {
-
-        System.out.println("\n=============================================================");
-        System.out.println(
-                "   First " + NUMBER_OF_VIDEOS_RETURNED + " videos for search on \"" + query + "\".");
-        System.out.println("=============================================================\n");
-
-        if (!iteratorSearchResults.hasNext()) {
-            System.out.println(" There aren't any results for your query.");
-        }
-
-        while (iteratorSearchResults.hasNext()) {
-
-            SearchResult singleVideo = iteratorSearchResults.next();
-            ResourceId rId = singleVideo.getId();
-
-            // Confirm that the result represents a video. Otherwise, the
-            // item will not contain a video ID.
-            if (rId.getKind().equals("youtube#video")) {
-                Thumbnail thumbnail = singleVideo.getSnippet().getThumbnails().getDefault();
-
-                System.out.println(" Video Id: " + rId.getVideoId());
-                System.out.println(" Title: " + singleVideo.getSnippet().getTitle());
-                System.out.println(" Thumbnail: " + thumbnail.getUrl());
-                System.out.println("\n-------------------------------------------------------------\n");
-            }
-        }
+        return null;
     }
 }
