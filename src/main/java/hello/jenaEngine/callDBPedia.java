@@ -12,9 +12,6 @@ import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 
-/**
- * Created by kha on 21/01/16.
- */
 
 
 public class callDBPedia {

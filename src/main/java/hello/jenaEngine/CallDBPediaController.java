@@ -1,6 +1,6 @@
 package hello.jenaEngine;
 
-import hello.rdfProperty.AthleteProperty;
+import hello.rdfProperty.MusicProfileProperty;
 import hello.rdfProperty.ClubProperty;
 import org.apache.jena.rdf.model.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.Writer;
 
-/**
- * Created by frouyer on 23/01/16.
- */
+
 @RestController
 @RequestMapping("/dbpedia")
 public class CallDBPediaController {
@@ -21,7 +19,7 @@ public class CallDBPediaController {
     public void request(Writer responseWriter,@RequestParam("resource") String resource, @RequestParam("property") String property) {
         try {
             if(property.equals("athlete")){
-                for(String p : AthleteProperty.getInstance().getSpProp()){
+                for(String p : MusicProfileProperty.getInstance().getSpProp()){
                     Model m = callDBPedia.run(resource,p);
                     m.write(responseWriter,"RDF/XML");
                 }

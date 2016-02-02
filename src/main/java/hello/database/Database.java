@@ -5,7 +5,6 @@ import com.mongodb.client.MongoDatabase;
 
 import hello.jenaEngine.TwitterTranslator;
 import hello.twitterEngine.TwitterClient;
-import org.apache.http.protocol.HTTP;
 import org.apache.jena.rdf.model.Model;
 import org.bson.Document;
 import org.json.JSONObject;
@@ -14,9 +13,6 @@ import java.io.*;
 import java.util.*;
 
 
-/**
- * Created by frouyer on 13/01/16.
- */
 public class Database {
 
     private File ficRDF = new File("data.rdf");

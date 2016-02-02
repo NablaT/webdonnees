@@ -1,8 +1,6 @@
 package hello.database;
 
-/**
- * Created by frouyer on 26/01/16.
- */
+
 public class ParseTools {
 
     public static String getURI(String input){

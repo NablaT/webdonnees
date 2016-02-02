@@ -3,13 +3,10 @@ package hello.rdfProperty;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by frouyer on 26/01/16.
- */
-public class AthleteProperty {
-    private static AthleteProperty ourInstance = new AthleteProperty();
+public class MusicProfileProperty {
+    private static MusicProfileProperty ourInstance = new MusicProfileProperty();
 
-    public static AthleteProperty getInstance() {
+    public static MusicProfileProperty getInstance() {
         return ourInstance;
     }
 
@@ -19,14 +16,12 @@ public class AthleteProperty {
 
     private List<String> spProp;
 
-    private AthleteProperty() {
+    private MusicProfileProperty() {
 
         spProp = new ArrayList<>();
 
         spProp.add("http://dbpedia.org/ontology/dbpedia-owl:abstract");
         spProp.add("http://dbpedia.org/ontology/dbpedia-owl:birthDate");
-        spProp.add("http://dbpedia.org/ontology/dbpedia-owl:birthName");
-        spProp.add("http://dbpedia.org/ontology/dbpedia-owl:birthPlace");
         spProp.add("http://dbpedia.org/ontology/dbpedia-owl:currentTeam");
         spProp.add("http://dbpedia.org/ontology/dbpedia-owl:nationality");
         spProp.add("http://dbpedia.org/ontology/dbpedia-owl:wikiPageExternalLink");
