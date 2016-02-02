@@ -2,6 +2,8 @@
 .class
 .iml
 
+*.rdf
+
 *.java.hsp
 *.sonarj
 *.sw*
