@@ -10,7 +10,7 @@ public class MusicProfileProperty {
         return ourInstance;
     }
 
-    public List<String> getSpProp() {
+    public List<String> getMusicProp() {
         return spProp;
     }
 
@@ -20,7 +20,9 @@ public class MusicProfileProperty {
 
         spProp = new ArrayList<>();
 
-        spProp.add("http://dbpedia.org/ontology/dbpedia-owl:abstract");
+        spProp.add("http://dbpedia.org/ontology/dbpedia-owl:genre");
+        //spProp.add("http://dbpedia.org/ontology/dbpedia-owl:activeYearsStartYear");
+        /*
         spProp.add("http://dbpedia.org/ontology/dbpedia-owl:birthDate");
         spProp.add("http://dbpedia.org/ontology/dbpedia-owl:currentTeam");
         spProp.add("http://dbpedia.org/ontology/dbpedia-owl:nationality");
@@ -31,6 +33,6 @@ public class MusicProfileProperty {
         spProp.add("http://purl.org/dc/terms/subject/dcterms:subject");
         spProp.add("http://www.w3.org/1999/02/22-rdf-syntax-ns#type/rdf:type");
         spProp.add("http://www.w3.org/2000/01/rdf-schema#comment/rdfs:comment");
-        spProp.add("http://www.w3.org/2002/07/owl#sameAs/owl:sameAs");
+        spProp.add("http://www.w3.org/2002/07/owl#sameAs/owl:sameAs");*/
     }
 }

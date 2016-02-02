@@ -11,23 +11,24 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-        package hello.youtubeEngine;
-        import com.google.api.client.googleapis.json.GoogleJsonResponseException;
-        import com.google.api.client.http.HttpRequest;
-        import com.google.api.client.http.HttpRequestInitializer;
-        import com.google.api.client.http.javanet.NetHttpTransport;
-        import com.google.api.client.json.jackson2.JacksonFactory;
-        //import com.google.api.services.samples.youtube.cmdline.Auth;
-        import com.google.api.services.youtube.YouTube;
-        import com.google.api.services.youtube.model.*;
+package hello.youtubeEngine;
 
-        import java.io.BufferedReader;
-        import java.io.IOException;
-        import java.io.InputStream;
-        import java.io.InputStreamReader;
-        import java.util.Iterator;
-        import java.util.List;
-        import java.util.Properties;
+import com.google.api.client.googleapis.json.GoogleJsonResponseException;
+import com.google.api.client.http.HttpRequest;
+import com.google.api.client.http.HttpRequestInitializer;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.jackson2.JacksonFactory;
+//import com.google.api.services.samples.youtube.cmdline.Auth;
+import com.google.api.services.youtube.YouTube;
+import com.google.api.services.youtube.model.*;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Properties;
 
 /**
  * Print a list of videos matching a search term.
@@ -105,7 +106,7 @@ public class YoutubeQuerry {
             SearchListResponse searchResponse = search.execute();
             List<SearchResult> searchResultList = searchResponse.getItems();
 
-            YouTube.Videos.List listVideosRequest = youtube.videos().list("statistics").setId(""+searchResultList.get(0).getId().getVideoId()).setKey(apiKey);
+            YouTube.Videos.List listVideosRequest = youtube.videos().list("statistics").setId("" + searchResultList.get(0).getId().getVideoId()).setKey(apiKey);
             VideoListResponse listResponse = listVideosRequest.execute();
             List<Video> videoList = listResponse.getItems();
 
