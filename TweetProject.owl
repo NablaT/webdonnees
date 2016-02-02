@@ -1,0 +1,559 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.w3.org/2002/07/owl"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <Ontology rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasCoordinates -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasCoordinates">
+        <rdfs:domain>
+            <Restriction>
+                <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasCoordinates"/>
+                <qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+                <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Coordinates"/>
+            </Restriction>
+        </rdfs:domain>
+        <rdfs:range>
+            <Restriction>
+                <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasCoordinates"/>
+                <qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+                <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Coordinates"/>
+            </Restriction>
+        </rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasCreationDate -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasCreationDate">
+        <rdfs:domain>
+            <Restriction>
+                <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasCreationDate"/>
+                <qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+                <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#CreationDate"/>
+            </Restriction>
+        </rdfs:domain>
+        <rdfs:range>
+            <Restriction>
+                <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasCreationDate"/>
+                <qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+                <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#CreationDate"/>
+            </Restriction>
+        </rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasEntities -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasEntities">
+        <rdfs:domain>
+            <Restriction>
+                <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasEntities"/>
+                <someValuesFrom rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Entities"/>
+            </Restriction>
+        </rdfs:domain>
+        <rdfs:range>
+            <Restriction>
+                <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasEntities"/>
+                <someValuesFrom rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Entities"/>
+            </Restriction>
+        </rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasGeolocation -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasGeolocation">
+        <rdfs:domain>
+            <Restriction>
+                <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasGeolocation"/>
+                <qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+                <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Geolocation"/>
+            </Restriction>
+        </rdfs:domain>
+        <rdfs:range>
+            <Restriction>
+                <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasGeolocation"/>
+                <qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+                <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Geolocation"/>
+            </Restriction>
+        </rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasId -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasId">
+        <rdfs:domain>
+            <Restriction>
+                <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasId"/>
+                <qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+                <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Id"/>
+            </Restriction>
+        </rdfs:domain>
+        <rdfs:range>
+            <Restriction>
+                <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasId"/>
+                <qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+                <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Id"/>
+            </Restriction>
+        </rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasLanguage -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasLanguage">
+        <rdfs:domain>
+            <Restriction>
+                <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasLanguage"/>
+                <minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</minQualifiedCardinality>
+                <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Language"/>
+            </Restriction>
+        </rdfs:domain>
+        <rdfs:range>
+            <Restriction>
+                <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasLanguage"/>
+                <minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</minQualifiedCardinality>
+                <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Language"/>
+            </Restriction>
+        </rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasLocation -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasLocation">
+        <rdfs:domain>
+            <Restriction>
+                <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasLocation"/>
+                <qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+                <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Location"/>
+            </Restriction>
+        </rdfs:domain>
+        <rdfs:range>
+            <Restriction>
+                <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasLocation"/>
+                <qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+                <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Location"/>
+            </Restriction>
+        </rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasName -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasName">
+        <rdfs:domain>
+            <Restriction>
+                <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasName"/>
+                <minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</minQualifiedCardinality>
+                <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Name"/>
+            </Restriction>
+        </rdfs:domain>
+        <rdfs:range>
+            <Restriction>
+                <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasName"/>
+                <minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</minQualifiedCardinality>
+                <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Name"/>
+            </Restriction>
+        </rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasQuote -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasQuote">
+        <rdfs:domain>
+            <Restriction>
+                <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasQuote"/>
+                <someValuesFrom rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Quote"/>
+            </Restriction>
+        </rdfs:domain>
+        <rdfs:range>
+            <Restriction>
+                <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasQuote"/>
+                <someValuesFrom rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Quote"/>
+            </Restriction>
+        </rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasReplyToScreenName -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasReplyToScreenName">
+        <rdfs:domain>
+            <Restriction>
+                <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasReplyToScreenName"/>
+                <minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</minQualifiedCardinality>
+                <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#ReplyToScreenName"/>
+            </Restriction>
+        </rdfs:domain>
+        <rdfs:range>
+            <Restriction>
+                <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasReplyToScreenName"/>
+                <minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</minQualifiedCardinality>
+                <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#ReplyToScreenName"/>
+            </Restriction>
+        </rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasReplyToStatus -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasReplyToStatus">
+        <rdfs:domain>
+            <Restriction>
+                <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasReplyToStatus"/>
+                <minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</minQualifiedCardinality>
+                <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#ReplyToStatus"/>
+            </Restriction>
+        </rdfs:domain>
+        <rdfs:range>
+            <Restriction>
+                <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasReplyToStatus"/>
+                <minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</minQualifiedCardinality>
+                <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#ReplyToStatus"/>
+            </Restriction>
+        </rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasScreenName -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasScreenName">
+        <rdfs:domain>
+            <Restriction>
+                <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasScreenName"/>
+                <minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</minQualifiedCardinality>
+                <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#ScreenName"/>
+            </Restriction>
+        </rdfs:domain>
+        <rdfs:range>
+            <Restriction>
+                <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasScreenName"/>
+                <minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</minQualifiedCardinality>
+                <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#ScreenName"/>
+            </Restriction>
+        </rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasStatus -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasStatus">
+        <rdfs:domain>
+            <Restriction>
+                <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasStatus"/>
+                <minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</minQualifiedCardinality>
+                <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Status"/>
+            </Restriction>
+        </rdfs:domain>
+        <rdfs:range>
+            <Restriction>
+                <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasStatus"/>
+                <minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</minQualifiedCardinality>
+                <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Status"/>
+            </Restriction>
+        </rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasTweet -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasTweet">
+        <rdfs:domain>
+            <Restriction>
+                <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasTweet"/>
+                <someValuesFrom rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Tweet"/>
+            </Restriction>
+        </rdfs:domain>
+    </ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Club -->
+
+    <Class rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Club">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Entities"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Coordinates -->
+
+    <Class rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Coordinates"/>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#CreationDate -->
+
+    <Class rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#CreationDate"/>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Entities -->
+
+    <Class rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Entities"/>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Geolocation -->
+
+    <Class rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Geolocation"/>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Hashtag -->
+
+    <Class rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Hashtag">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Quote"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Id -->
+
+    <Class rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Id"/>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Language -->
+
+    <Class rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Language"/>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Location -->
+
+    <Class rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Location"/>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Name -->
+
+    <Class rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Name"/>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Person -->
+
+    <Class rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Person">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Entities"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Quote -->
+
+    <Class rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Quote">
+        <equivalentClass>
+            <Class>
+                <intersectionOf rdf:parseType="Collection">
+                    <Restriction>
+                        <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasEntities"/>
+                        <qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+                        <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Entities"/>
+                    </Restriction>
+                    <Restriction>
+                        <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasName"/>
+                        <qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+                        <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Name"/>
+                    </Restriction>
+                </intersectionOf>
+            </Class>
+        </equivalentClass>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#ReplyToScreenName -->
+
+    <Class rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#ReplyToScreenName"/>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#ReplyToStatus -->
+
+    <Class rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#ReplyToStatus"/>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#ScreenName -->
+
+    <Class rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#ScreenName"/>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Sport -->
+
+    <Class rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Sport">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Entities"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Status -->
+
+    <Class rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Status"/>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Tweet -->
+
+    <Class rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Tweet">
+        <equivalentClass>
+            <Class>
+                <intersectionOf rdf:parseType="Collection">
+                    <Restriction>
+                        <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasQuote"/>
+                        <someValuesFrom rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Quote"/>
+                    </Restriction>
+                    <Restriction>
+                        <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasReplyToScreenName"/>
+                        <someValuesFrom rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#ReplyToScreenName"/>
+                    </Restriction>
+                    <Restriction>
+                        <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasReplyToStatus"/>
+                        <someValuesFrom rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#ReplyToStatus"/>
+                    </Restriction>
+                    <Restriction>
+                        <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasCreationDate"/>
+                        <qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+                        <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#CreationDate"/>
+                    </Restriction>
+                    <Restriction>
+                        <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasId"/>
+                        <qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+                        <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Id"/>
+                    </Restriction>
+                    <Restriction>
+                        <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasStatus"/>
+                        <qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+                        <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Status"/>
+                    </Restriction>
+                </intersectionOf>
+            </Class>
+        </equivalentClass>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Url -->
+
+    <Class rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Url">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Quote"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#User -->
+
+    <Class rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#User">
+        <equivalentClass>
+            <Class>
+                <intersectionOf rdf:parseType="Collection">
+                    <Restriction>
+                        <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasQuote"/>
+                        <someValuesFrom rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Quote"/>
+                    </Restriction>
+                    <Restriction>
+                        <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasLanguage"/>
+                        <minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</minQualifiedCardinality>
+                        <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Language"/>
+                    </Restriction>
+                    <Restriction>
+                        <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasScreenName"/>
+                        <minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</minQualifiedCardinality>
+                        <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#ScreenName"/>
+                    </Restriction>
+                    <Restriction>
+                        <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasCoordinates"/>
+                        <qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+                        <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Coordinates"/>
+                    </Restriction>
+                    <Restriction>
+                        <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasGeolocation"/>
+                        <qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+                        <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Geolocation"/>
+                    </Restriction>
+                    <Restriction>
+                        <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasId"/>
+                        <qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+                        <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Id"/>
+                    </Restriction>
+                    <Restriction>
+                        <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasLocation"/>
+                        <qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+                        <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Location"/>
+                    </Restriction>
+                    <Restriction>
+                        <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasName"/>
+                        <qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+                        <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Name"/>
+                    </Restriction>
+                    <Restriction>
+                        <onProperty rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#hasTweet"/>
+                        <qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+                        <onClass rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Tweet"/>
+                    </Restriction>
+                </intersectionOf>
+            </Class>
+        </equivalentClass>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/kha/ontologies/2016/tweetproject#UserMentions -->
+
+    <Class rdf:about="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#UserMentions">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/kha/ontologies/2016/tweetproject#Quote"/>
+    </Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.1.3.20151118-2017) https://github.com/owlcs/owlapi -->
+
