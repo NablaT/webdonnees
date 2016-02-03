@@ -24,12 +24,11 @@ public class CallDBPediaController {
                     m.write(responseWriter,"RDF/XML");
                 }
             }else*/
-            if (property.equals("club")) {
-                for (String p : MusicProfileProperty.getInstance().getMusicProp()) {
-                    Model m = callDBPedia.run(resource, p);
-                    m.write(responseWriter, "RDF/XML");
-                }
+            for (String p : MusicProfileProperty.getInstance().getMusicProp()) {
+                Model m = callDBPedia.run(resource, property);
+                m.write(responseWriter, "RDF/XML");
             }
+
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }

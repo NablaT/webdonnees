@@ -16,7 +16,7 @@ import org.apache.jena.rdf.model.Resource;
 
 public class callDBPedia {
 
-    public static Model run(String r, String p) throws Exception {
+    public static Model run(String r, String type) throws Exception {
 
         Model m = ModelFactory.createDefaultModel();
         Resource resource = m.createResource("http://fr.dbpedia.org/resource#" + r);
@@ -34,8 +34,11 @@ public class callDBPedia {
                 + "SELECT DISTINCT ?wikiValue WHERE { <http://fr.dbpedia.org/resource/" + r + "> " +
                 ParseTools.getProperty(p) + " ?wikiValue }";*/
 
-        /*
-        String query = "PREFIX foaf: <http://xmlns.com/foaf/0.1/> "
+        String query="";
+
+        if(type.equals("club")){
+
+        query = "PREFIX foaf: <http://xmlns.com/foaf/0.1/> "
                 + "PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>"
                 + "PREFIX dcterms: <http://purl.org/dc/terms/>"
                 + "PREFIX prop-fr: <http://fr.dbpedia.org/property/>"
@@ -52,48 +55,38 @@ public class callDBPedia {
                 + "?value "
                 + ParseTools.getProperty("http://dbpedia.org/ontology/dbpedia-owl:wikiPageWikiLink")
                 + " ?list "
-                + "}";*/
-
-        /* QUERY WHICH WORKS
-        String query = "PREFIX foaf: <http://xmlns.com/foaf/0.1/> "
-
-                + "PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>"
-                + "PREFIX dcterms: <http://purl.org/dc/terms/>"
-                + "PREFIX prop-fr: <http://fr.dbpedia.org/property/>"
-                + "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
-                + "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
-                + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
-                + "SELECT DISTINCT ?list WHERE{ {SELECT DISTINCT ?value ?year WHERE { <http://fr.dbpedia.org/resource/" + r + "> "
-                + ParseTools.getProperty("http://dbpedia.org/ontology/dbpedia-owl:genre")
-                + " ?value "
-                + ". <http://fr.dbpedia.org/resource/" + r + ">"
+                + ". ?list"
                 + ParseTools.getProperty("http://dbpedia.org/ontology/dbpedia-owl:activeYearsStartYear")
-                + " ?year"
-                + "}}"
-                + "?value "
-                + ParseTools.getProperty("http://dbpedia.org/ontology/dbpedia-owl:wikiPageWikiLink")
-                + " ?list "
+                + "?year2"
+                + ". filter(exists{?list "
+                + ParseTools.getProperty("http://dbpedia.org/ontology/dbpedia-owl:bandMember")
+                + " ?members})"
                 + "}";
-*/
+        }
+        else if(type.equals("music")){
+            System.out.println("I'm in music part");
+            query = "PREFIX foaf: <http://xmlns.com/foaf/0.1/> "
+                    + "PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>"
+                    + "PREFIX dcterms: <http://purl.org/dc/terms/>"
+                    + "PREFIX prop-fr: <http://fr.dbpedia.org/property/>"
+                    + "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
+                    + "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
+                    + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
+                    + "SELECT DISTINCT ?list WHERE{ {SELECT DISTINCT ?value ?year WHERE { <http://fr.dbpedia.org/resource/" + r + "> "
+                    + ParseTools.getProperty("http://dbpedia.org/ontology/dbpedia-owl:album")
+                    + " ?value "
+                    + "}}"
+                    + "?value "
+                    + ParseTools.getProperty("http://dbpedia.org/ontology/dbpedia-owl:wikiPageWikiLink")
+                    + " ?list "
+                    + ". filter(exists{?list "
+                    + ParseTools.getProperty("http://dbpedia.org/ontology/dbpedia-owl:recordDate")
+                    + " ?recordDate})"
+                    + ".filter(?list != ?value)"
+                    + "}";
+        }
+
         /*
-                + ". ?list"
-                + ParseTools.getProperty("http://dbpedia.org/ontology/dbpedia-owl:activeYearsStartYear")
-                + "?year2"
-
-                + ". ?list"
-                + ParseTools.getProperty("http://dbpedia.org/ontology/dbpedia-owl:activeYearsStartYear")
-                + "?year2"
-
-                + ". ?list"
-                + ParseTools.getProperty("http://dbpedia.org/ontology/dbpedia-owl:activeYearsStartYear")
-                + " ?year2"
-
-        ?value dbpedia-owl:wikiPageWikiLink ?list
-
-		. ?list dbpedia-owl:activeYearsStartYear ?year2
-		.filter(exists{?list dbpedia-owl:bandMember ?members})
-		.filter(?list!=?value)
-		.filter(?year>?year2)
 
                /* + ". <http://fr.dbpedia.org/resource/" + r + ">"
                 + ParseTools.getProperty("http://dbpedia.org/ontology/dbpedia-owl:activeYearsStartYear")
@@ -101,20 +94,6 @@ public class callDBPedia {
         //+ "SELECT DISTINCT ?value  WHERE {<http://fr.dbpedia.org/resource/" + r + "> dbpedia-owl:genre ?value }";
 
 
-        String query = "PREFIX foaf: <http://xmlns.com/foaf/0.1/> "
-                + "PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>"
-                + "PREFIX dcterms: <http://purl.org/dc/terms/>"
-                + "PREFIX prop-fr: <http://fr.dbpedia.org/property/>"
-                + "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
-                + "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
-                + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
-                + "SELECT DISTINCT ?value WHERE { <http://fr.dbpedia.org/resource/" + r + "> "
-                + ParseTools.getProperty("http://dbpedia.org/ontology/dbpedia-owl:genre")
-                + " ?value "
-                + ". <http://fr.dbpedia.org/resource/" + r + ">"
-                + ParseTools.getProperty("http://dbpedia.org/ontology/dbpedia-owl:activeYearsStartYear")
-                + " ?year"
-                + "}";
         System.out.println("query: "+ query);
         QueryExecution qe = QueryExecutionFactory.sparqlService(service, query);
         try {
@@ -125,23 +104,10 @@ public class callDBPedia {
             */
 
             for (; results.hasNext(); ) {
-
                 QuerySolution sol = (QuerySolution) results.next();
-                String query2="";
-                QueryExecution qe2 = QueryExecutionFactory.sparqlService(service, query2);
-                try{
-                    ResultSet results2=qe2.execSelect();
-
-
-
-                }
-                catch(Exception e){
-
-                }
-
                 System.out.println("SOL: "+sol);
-                //String answer = sol.get("?list").toString();
-                //resource.addProperty(property, answer, XSDDatatype.XSDstring);
+                String answer = sol.get("?list").toString();
+                resource.addProperty(property, answer, XSDDatatype.XSDstring);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
