@@ -1,7 +1,6 @@
 package hello.jenaEngine;
 
 import hello.rdfProperty.MusicProfileProperty;
-import hello.rdfProperty.ClubProperty;
 import org.apache.jena.rdf.model.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
