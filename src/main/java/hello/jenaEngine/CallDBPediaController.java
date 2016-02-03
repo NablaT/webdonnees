@@ -18,12 +18,6 @@ public class CallDBPediaController {
     @RequestMapping(method = RequestMethod.POST)
     public void request(Writer responseWriter, @RequestParam("resource") String resource, @RequestParam("property") String property) {
         try {
-            /*if(property.equals("athlete")){
-                for(String p : MusicProfileProperty.getInstance().getSpProp()){
-                    Model m = callDBPedia.run(resource,p);
-                    m.write(responseWriter,"RDF/XML");
-                }
-            }else*/
             for (String p : MusicProfileProperty.getInstance().getMusicProp()) {
                 Model m = callDBPedia.run(resource, property);
                 m.write(responseWriter, "RDF/XML");
