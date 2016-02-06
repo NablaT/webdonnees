@@ -1,7 +1,7 @@
 package hello.database;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -16,12 +16,12 @@ public class CleanRdf {
     private String pathArtists;
 
     public CleanRdf() {
-        this.songElements=new ArrayList<String>();
-        this.bandElements=new ArrayList<String>();
-        this.elementsFromRdf = new ArrayList<String>();
-        this.pathArtists="artists.txt";
+        this.songElements=new ArrayList<>();
+        this.bandElements=new ArrayList<>();
+        this.elementsFromRdf = new ArrayList<>();
+        this.pathArtists="./artists.txt";
         this.pathSongs="songs.txt";
-        //initialiseSongArtist();
+        initialiseSongArtist();
     }
 
     public void getBackRdfContent(String pathFile) {
@@ -156,11 +156,19 @@ public class CleanRdf {
     }
 
     public void initialiseSongArtist(){
-        BufferedReader reader = new BufferedReader(new FileReader(this.pathSongs));
-        String line;
-        while ((line = reader.readLine()) != null) {
-            this.elementsFromRdf.add(line);
+        try {
+            URL url = getClass().getResource("/src/main/java/hello/database/songs.txt");
+            File file = new File(url.getPath());
+            InputStream input = getClass().getResourceAsStream("/src/main/java/hello/database/songs.txt");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+                this.elementsFromRdf.add(line);
+            }
+            reader.close();
+        } catch(Exception e) {
+            System.out.println(e);
         }
-        reader.close();
     }
 }
