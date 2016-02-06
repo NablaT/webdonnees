@@ -1,5 +1,6 @@
 package hello;
 
+import hello.database.CleanRdf;
 import hello.youtubeEngine.YoutubeQuerry;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -39,6 +40,9 @@ public class Application {
         list.add(s5);
         Map<String, Integer> map = new YoutubeQuerry().closeSong(list);
 
+        CleanRdf rdfContent=new CleanRdf();
+        rdfContent.getBackRdfContent("D:/Workspace/webdonnees/data.rdf");
+        System.out.println(rdfContent.getElements());
         for(String s : map.keySet()) {
             System.out.println("La chanson " + s + " a " + map.get(s) + " vues");
         }
