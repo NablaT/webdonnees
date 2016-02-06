@@ -21,7 +21,7 @@ public class CleanRdf {
         this.elementsFromRdf = new ArrayList<String>();
         this.pathArtists="artists.txt";
         this.pathSongs="songs.txt";
-        initialiseSongArtist();
+        //initialiseSongArtist();
     }
 
     public void getBackRdfContent(String pathFile) {
