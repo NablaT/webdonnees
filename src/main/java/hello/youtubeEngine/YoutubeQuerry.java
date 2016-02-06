@@ -109,7 +109,9 @@ public class YoutubeQuerry {
 
     public Map<String, Integer> closeSong(List<List<String>> song) {
         Map<String, Integer> interMap = new HashMap<>();
+
         for(List<String> s : song) {
+            System.out.println("closeSong: "+ s);
             int view = Integer.parseInt(youtubeRequest(s.get(0), s.get(1)));
             interMap.put(s.get(1), view);
         }

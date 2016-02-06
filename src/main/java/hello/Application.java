@@ -5,6 +5,7 @@ import hello.youtubeEngine.YoutubeQuerry;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,8 +17,28 @@ public class Application {
 
 
         SpringApplication.run(Application.class, args);
+
+        CleanRdf rdfContent=new CleanRdf();
+        rdfContent.getBackRdfContent("D:/Workspace/webdonnees/data.rdf");
+        System.out.println(rdfContent.getElements());
+
+        rdfContent.cleanElements();
+
+        ArrayList<String> songList=rdfContent.getElements();
+
+        List<List<String>> songBandList=new ArrayList<>();
+        for(int i=0;i<songList.size();i++){
+            ArrayList<String> tmpArray=new ArrayList<String>();
+            tmpArray.add("beatles");
+            tmpArray.add(songList.get(i));
+            songBandList.add(tmpArray);
+        }
+        System.out.println("coucouc");
+        System.out.println("final song list: "+ songBandList);
+
+        //List<String> fullSongList=rdfContent.getElements();
         //System.out.println(new YoutubeQuerry().youtubeRequest("beatles", "yesterday"));
-        List<String> s1 = new ArrayList<>();
+        /*List<String> s1 = new ArrayList<>();
         s1.add("beatles");
         s1.add("yesterday");
         List<String> s2 = new ArrayList<>();
@@ -38,11 +59,9 @@ public class Application {
         list.add(s1);
         list.add(s4);
         list.add(s5);
-        Map<String, Integer> map = new YoutubeQuerry().closeSong(list);
+        Map<String, Integer> map = new YoutubeQuerry().closeSong(list);*/
+        Map<String, Integer> map = new YoutubeQuerry().closeSong(songBandList);
 
-        CleanRdf rdfContent=new CleanRdf();
-        rdfContent.getBackRdfContent("D:/Workspace/webdonnees/data.rdf");
-        System.out.println(rdfContent.getElements());
         for(String s : map.keySet()) {
             System.out.println("La chanson " + s + " a " + map.get(s) + " vues");
         }

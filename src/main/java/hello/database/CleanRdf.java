@@ -40,10 +40,17 @@ public class CleanRdf {
                         tmpResult=tmpResult[1].split(stringToSplit2);
                         finalResult=tmpResult[0];
                     }catch (Exception e){
-                        System.out.println("Nothing");
+                        //System.out.println("Too short array");
                     }
                 }
                 finalResult=finalResult.replace("/","");
+                finalResult=finalResult.replace("_"," ");
+                String stringToSplit3="\\(";
+                //System.out.println("the character to split: "+stringToSplit3);
+                String[] almostFinal=finalResult.split(stringToSplit3);
+                if(almostFinal.length>0){
+                    finalResult=almostFinal[0];
+                }
                 this.elementsFromRdf.set(i,finalResult);
             }
         }
@@ -60,5 +67,14 @@ public class CleanRdf {
 
     public void setElements(ArrayList<String> elements){
         this.elementsFromRdf=elements;
+    }
+
+    public void cleanElements(){
+        for(int i=0; i<this.elementsFromRdf.size();i++){
+            if(this.elementsFromRdf.get(i).equals("")){
+                this.elementsFromRdf.remove(i);
+                i=i-1;
+            }
+        }
     }
 }
