@@ -55,9 +55,6 @@ public class callDBPedia {
                 + "?value "
                 + ParseTools.getProperty("http://dbpedia.org/ontology/dbpedia-owl:wikiPageWikiLink")
                 + " ?list "
-                + ". ?list"
-                + ParseTools.getProperty("http://dbpedia.org/ontology/dbpedia-owl:activeYearsStartYear")
-                + "?year2"
                 + ". filter(exists{?list "
                 + ParseTools.getProperty("http://dbpedia.org/ontology/dbpedia-owl:bandMember")
                 + " ?members})"

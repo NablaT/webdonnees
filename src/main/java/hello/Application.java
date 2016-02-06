@@ -20,11 +20,11 @@ public class Application {
 
         CleanRdf rdfContent=new CleanRdf();
         rdfContent.getBackRdfContent("D:/Workspace/webdonnees/data.rdf");
-        System.out.println(rdfContent.getElements());
+       // System.out.println(rdfContent.getElements());
 
         rdfContent.cleanElements();
 
-        ArrayList<String> songList=rdfContent.getElements();
+        ArrayList<String> songList=rdfContent.getSongElements();
 
         List<List<String>> songBandList=new ArrayList<>();
         for(int i=0;i<songList.size();i++){
@@ -33,8 +33,9 @@ public class Application {
             tmpArray.add(songList.get(i));
             songBandList.add(tmpArray);
         }
-        System.out.println("coucouc");
-        System.out.println("final song list: "+ songBandList);
+
+
+        //System.out.println("GETBACKJUSTGROUPS: "+ rdfContent.getBandElements());
 
         //List<String> fullSongList=rdfContent.getElements();
         //System.out.println(new YoutubeQuerry().youtubeRequest("beatles", "yesterday"));
