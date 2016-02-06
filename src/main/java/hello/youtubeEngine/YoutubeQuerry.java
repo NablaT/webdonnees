@@ -20,6 +20,7 @@ import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 //import com.google.api.services.samples.youtube.cmdline.Auth;
+import com.google.api.client.util.Joiner;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.*;
 
@@ -107,6 +108,73 @@ public class YoutubeQuerry {
         return null;
     }
 
+    public String youtubeRequestArtist(String artist) {
+        try {
+            // This object is used to make YouTube Data API requests. The last
+            // argument is required, but since we don't need anything
+            // initialized when the HttpRequest is initialized, we override
+            // the interface and provide a no-op function.
+
+            youtube = new YouTube.Builder(new NetHttpTransport(), new JacksonFactory(), new HttpRequestInitializer() {
+                public void initialize(HttpRequest request) throws IOException {
+                }
+            }).setApplicationName("youtube-cmdline-search-sample").build();
+
+            // Prompt the user to enter a query term.
+            String queryTerm = artist;
+
+            // Define the API request for retrieving search results.
+            YouTube.Search.List search = youtube.search().list("id,snippet");
+
+            // Set your developer youtube.properties from the Google Developers Console for
+            // non-authenticated requests. See:
+            // https://console.developers.google.com/
+            String apiKey = "AIzaSyDbwRQvCvTn8R2GBrwmMiWWoAb5hC_Zv9k";
+            search.setKey(apiKey);
+            search.setQ(queryTerm);
+            // Restrict the search results to only include videos. See:
+            // https://developers.google.com/youtube/v3/docs/search/list#type
+            search.setType("video");
+            search.setOrder("viewCount");
+            // To increase efficiency, only retrieve the fields that the
+            // application uses.
+            search.setFields("items(id/kind,id/videoId,snippet/title,snippet/thumbnails/default/url)");
+            search.setMaxResults((long) 3);
+
+            // Call the API and print results.
+            SearchListResponse searchResponse = search.execute();
+            List<SearchResult> searchResultList = searchResponse.getItems();
+
+            List<String> videoIds = new ArrayList<>();
+            for (SearchResult searchResult : searchResultList) {
+                videoIds.add(searchResult.getId().getVideoId());
+            }
+            Joiner stringJoiner = Joiner.on(',');
+            String videoId = stringJoiner.join(videoIds);
+
+            YouTube.Videos.List listVideosRequest = youtube.videos().list("statistics").setId(videoId).setKey(apiKey);
+            VideoListResponse listResponse = listVideosRequest.execute();
+            List<Video> videoList = listResponse.getItems();
+
+            if (searchResultList != null && videoList != null) {
+                long count = 0;
+                for(Video v : videoList) {
+                    count = count + v.getStatistics().getViewCount().longValue();
+                }
+                return "" + count;
+            }
+        } catch (GoogleJsonResponseException e) {
+            System.err.println("There was a service error: " + e.getDetails().getCode() + " : "
+                    + e.getDetails().getMessage());
+        } catch (IOException e) {
+            System.err.println("There was an IO error: " + e.getCause() + " : " + e.getMessage());
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+
+        return null;
+    }
+
     public Map<String, Long> closeSong(List<List<String>> song) {
         Map<String, Long> interMap = new HashMap<>();
 
@@ -114,6 +182,16 @@ public class YoutubeQuerry {
             System.out.println("closeSong: "+ s);
             long view = Integer.parseInt(youtubeRequest(s.get(0), s.get(1)));
             interMap.put(s.get(1), view);
+        }
+        return returnResult(interMap, 3);
+    }
+
+    public Map<String, Long> closeSongArtist(List<String> song) {
+        Map<String, Long> interMap = new HashMap<>();
+
+        for(String s : song) {
+            long view = Long.parseLong(youtubeRequestArtist(s));
+            interMap.put(s, view);
         }
         return returnResult(interMap, 3);
     }
