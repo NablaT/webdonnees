@@ -20,7 +20,7 @@ public class Application {
 
         //On initialise la classe qui gere le contenu du rdf
         CleanRdf rdfContent=new CleanRdf();
-        rdfContent.getBackRdfContent("D:/Workspace/webdonnees/data.rdf");
+        rdfContent.getBackRdfContent("data.rdf");
        // System.out.println(rdfContent.getElements());
 
         rdfContent.cleanElements();
