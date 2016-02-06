@@ -16,7 +16,7 @@ public class Application {
     public static void main(String[] args) {
 
 
- /*       SpringApplication.run(Application.class, args);
+        SpringApplication.run(Application.class, args);
 
         //On initialise la classe qui gere le contenu du rdf
         CleanRdf rdfContent=new CleanRdf();
@@ -47,15 +47,15 @@ public class Application {
 
         for(String s : map.keySet()) {
             System.out.println("La chanson " + s + " a " + map.get(s) + " vues");
-        }*/
+        }
 
-        List<String> s6 = new ArrayList<>();
+        /*List<String> s6 = new ArrayList<>();
         s6.add("beatles");
         s6.add("adele");
         s6.add("nirvana");
         s6.add("rihanna");
-        s6.add("MAGIC!");
-        Map<String, Long> map2 = new YoutubeQuerry().closeSongArtist(s6);
+        s6.add("MAGIC!");*/
+        Map<String, Long> map2 = new YoutubeQuerry().closeSongArtist(listOfArtists);
 
         for(String s : map2.keySet()) {
             System.out.println("L'artiste " + s + " a " + map2.get(s) + " vues");
