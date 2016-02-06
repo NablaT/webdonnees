@@ -108,7 +108,7 @@ public class CleanRdf {
                 this.bandElements.add(finalResult);
             }
         }
-        System.out.println("GROUP LIST: "+this.bandElements);
+        //System.out.println("GROUP LIST: "+this.bandElements);
     }
 
     public void removeSongsFromArrayRdf(int index){
@@ -134,7 +134,7 @@ public class CleanRdf {
     }
 
     public ArrayList<String> getBandElements() {
-        return this.getBandElements();
+        return this.bandElements;
     }
 
     public void setBandElements(ArrayList<String> elements) {
