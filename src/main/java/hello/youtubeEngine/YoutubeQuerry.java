@@ -135,11 +135,11 @@ public class YoutubeQuerry {
             // Restrict the search results to only include videos. See:
             // https://developers.google.com/youtube/v3/docs/search/list#type
             search.setType("video");
-            search.setOrder("viewCount");
+            //search.setOrder("viewCount");
             // To increase efficiency, only retrieve the fields that the
             // application uses.
             search.setFields("items(id/kind,id/videoId,snippet/title,snippet/thumbnails/default/url)");
-            search.setMaxResults((long) 3);
+            search.setMaxResults((long) 5);
 
             // Call the API and print results.
             SearchListResponse searchResponse = search.execute();
@@ -190,10 +190,11 @@ public class YoutubeQuerry {
         Map<String, Long> interMap = new HashMap<>();
 
         for(String s : song) {
+            System.out.println("closeArtist: "+ s);
             long view = Long.parseLong(youtubeRequestArtist(s));
             interMap.put(s, view);
         }
-        return returnResult(interMap, 3);
+        return returnResult(interMap, 5);
     }
 
     public Map<String, Long> returnResult(Map<String, Long> interMap, int numberToShow) {
