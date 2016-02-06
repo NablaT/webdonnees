@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.Writer;
+import java.util.ArrayList;
 import java.util.List;
 /**
  * Created by Remi on 03/02/2016.
@@ -14,10 +15,19 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/rdfResources")
-public class callRdfResourcesController {
+public class CallRdfResourcesController {
+
+    private List<String> rdfResult; // The string in which we store the results.
 
     @RequestMapping(method = RequestMethod.POST)
     public void request(Writer responseWriter, @RequestParam("resource") String resource, @RequestParam("property") String property) {
-
+        try{
+            rdfResult= (List<String>) CallRdfResources.request(resource);
+            System.out.println("rdf result: "+rdfResult);
+            responseWriter.write(rdfResult.toString());
+        }
+        catch (Exception e){
+            System.err.println(e.getMessage());
+        }
     }
 }

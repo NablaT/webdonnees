@@ -17,10 +17,10 @@ public class CallDBPediaController {
     @RequestMapping(method = RequestMethod.POST)
     public void request(Writer responseWriter, @RequestParam("resource") String resource, @RequestParam("property") String property) {
         try {
-            for (String p : MusicProfileProperty.getInstance().getMusicProp()) {
+            //for (String p : MusicProfileProperty.getInstance().getMusicProp()) {
                 Model m = callDBPedia.run(resource, property);
                 m.write(responseWriter, "RDF/XML");
-            }
+//            }
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
