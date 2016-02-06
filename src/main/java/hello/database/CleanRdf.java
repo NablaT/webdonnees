@@ -12,11 +12,16 @@ public class CleanRdf {
     private ArrayList<String> elementsFromRdf;
     private ArrayList<String> songElements;
     private ArrayList<String> bandElements;
+    private String pathSongs;
+    private String pathArtists;
 
     public CleanRdf() {
         this.songElements=new ArrayList<String>();
         this.bandElements=new ArrayList<String>();
         this.elementsFromRdf = new ArrayList<String>();
+        this.pathArtists="artists.txt";
+        this.pathSongs="songs.txt";
+        initialiseSongArtist();
     }
 
     public void getBackRdfContent(String pathFile) {
@@ -148,5 +153,14 @@ public class CleanRdf {
                 i = i - 1;
             }
         }
+    }
+
+    public void initialiseSongArtist(){
+        BufferedReader reader = new BufferedReader(new FileReader(this.pathSongs));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            this.elementsFromRdf.add(line);
+        }
+        reader.close();
     }
 }
