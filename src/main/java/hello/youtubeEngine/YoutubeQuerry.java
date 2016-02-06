@@ -107,21 +107,21 @@ public class YoutubeQuerry {
         return null;
     }
 
-    public Map<String, Integer> closeSong(List<List<String>> song) {
-        Map<String, Integer> interMap = new HashMap<>();
+    public Map<String, Long> closeSong(List<List<String>> song) {
+        Map<String, Long> interMap = new HashMap<>();
 
         for(List<String> s : song) {
             System.out.println("closeSong: "+ s);
-            int view = Integer.parseInt(youtubeRequest(s.get(0), s.get(1)));
+            long view = Integer.parseInt(youtubeRequest(s.get(0), s.get(1)));
             interMap.put(s.get(1), view);
         }
         return returnResult(interMap, 3);
     }
 
-    public Map<String, Integer> returnResult(Map<String, Integer> interMap, int numberToShow) {
+    public Map<String, Long> returnResult(Map<String, Long> interMap, int numberToShow) {
         List<String> cles = new ArrayList<>(interMap.keySet());
         Collections.sort(cles, new IntComparator(interMap));
-        Map<String, Integer> result = new HashMap<>();
+        Map<String, Long> result = new HashMap<>();
 
         for(int i = 0; i<numberToShow && i<=(interMap.keySet().size() - 1); i++) {
             result.put(cles.get((interMap.keySet().size() - 1) - i), interMap.get(cles.get((interMap.keySet().size() - 1) - i)));
@@ -132,17 +132,18 @@ public class YoutubeQuerry {
 }
 
 class IntComparator implements Comparator<String> {
-    private Map<String, Integer> map;//pour garder une copie du Map que l'on souhaite traiter
+    private Map<String, Long> map;//pour garder une copie du Map que l'on souhaite traiter
 
-    public IntComparator(Map<String, Integer> map){
+    public IntComparator(Map<String, Long> map){
         this.map = map; //stocker la copie pour qu'elle soit accessible dans compare()
     }
 
     @Override
     public int compare(String id1, String id2){
         //récupérer les personnes du Map par leur identifiant
-        int p1 = map.get(id1);
-        int p2 = map.get(id2);
-        return p1 - p2;
+        long p1 = map.get(id1);
+        long p2 = map.get(id2);
+        int results = Long.compare(p1, p2);
+        return results;
     }
 }

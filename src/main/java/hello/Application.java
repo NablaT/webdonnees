@@ -43,7 +43,7 @@ public class Application {
         System.out.println("List of artists: "+ listOfArtists);
 
         //On met la list des chansons associées a leurs artistes ex: [beatles,yesterday]
-        Map<String, Integer> map = new YoutubeQuerry().closeSong(songBandList);
+        Map<String, Long> map = new YoutubeQuerry().closeSong(songBandList);
 
         for(String s : map.keySet()) {
             System.out.println("La chanson " + s + " a " + map.get(s) + " vues");
