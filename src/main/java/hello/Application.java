@@ -1,21 +1,31 @@
 package hello;
 
 import hello.database.CleanRdf;
+import hello.jenaEngine.Ontologie;
 import hello.jenaEngine.callDBPedia;
 import hello.youtubeEngine.YoutubeQuerry;
+import org.apache.jena.datatypes.RDFDatatype;
+import org.apache.jena.graph.Graph;
+import org.apache.jena.graph.Node;
+import org.apache.jena.graph.Triple;
+import org.apache.jena.iri.impl.Main;
+import org.apache.jena.ontology.*;
+import org.apache.jena.ontology.impl.OntModelImpl;
+import org.apache.jena.rdf.model.*;
+import org.apache.jena.reasoner.Derivation;
+import org.apache.jena.reasoner.Reasoner;
+import org.apache.jena.reasoner.ValidityReport;
+import org.apache.jena.shared.Command;
+import org.apache.jena.shared.Lock;
+import org.apache.jena.shared.PrefixMapping;
+import org.apache.jena.util.iterator.ExtendedIterator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import org.apache.jena.rdf.model.Model;
-
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ExecutionException;
+import java.io.*;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @SpringBootApplication
 public class Application {
@@ -44,8 +54,10 @@ public class Application {
         }
 
         /////////////// ICI TU AS LA LISTE DES ARTISTES //////////////////////////
+
         ArrayList<String> listOfArtists = new ArrayList<String>();
         listOfArtists = rdfContent.getBandElements();
+
 
         System.out.println("song band list: "+songBandList);
         //On met la list des chansons associées a leurs artistes ex: [beatles,yesterday]
@@ -56,14 +68,6 @@ public class Application {
         }
 
 
-        //rdfContent.initialiseListOfIndexes();
-        /*List<String> s6 = new ArrayList<>();
-        s6.add("beatles");
-        s6.add("adele");
-        s6.add("nirvana");
-        s6.add("rihanna");
-        s6.add("MAGIC!");
-        */
         Map<String, Long> map2 = new YoutubeQuerry().closeSongArtist(listOfArtists);
 
         ArrayList<String> list = new ArrayList<>();
@@ -89,6 +93,17 @@ public class Application {
                 System.out.println("plop");
             }
         }
+
+
+        Ontologie OntologieClass = new Ontologie();
+        OntModel ontologie = OntologieClass.load();
+
+        OntClass song = ontologie.getOntClass("http://notreOnthologie#Song");
+        System.out.println(song);
+        ontologie.createIndividual("http://notreOnthologie#Hello", song);
+        ontologie.createIndividual("http://notreOnthologie#Rude!", song);
+
+        OntologieClass.write(ontologie);
 
 
         //rdfContent.deleteRecreateFile("data.rdf");

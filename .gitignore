@@ -3,6 +3,8 @@
 .iml
 
 *.rdf
+*.owl
+*.xml
 
 *.java.hsp
 *.sonarj
