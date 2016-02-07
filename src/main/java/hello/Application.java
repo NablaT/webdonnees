@@ -68,8 +68,9 @@ public class Application {
             System.out.println("L'artiste " + s + " a " + map2.get(s) + " vues");
         }
 
+        String currentArtist="U2";
         try{
-            Model m=  callDBPedia.run(listOfArtists.get(0),"club");
+            Model m=  callDBPedia.run(currentArtist,"songOfArtist");
             PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("data.rdf",true)));
             m.write(pw,"RDF/XML");
         }catch (Exception e){

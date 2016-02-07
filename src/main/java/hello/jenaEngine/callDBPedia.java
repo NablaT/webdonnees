@@ -96,25 +96,24 @@ public class callDBPedia {
                     + "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
                     + "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
                     + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
-                    + "SELECT DISTINCT ?list WHERE{ {SELECT DISTINCT ?value ?year WHERE { <http://fr.dbpedia.org/resource/" + r + "> "
-                    + ParseTools.getProperty("http://dbpedia.org/ontology/dbpedia-owl:album")
-                    + " ?value "
-                    + "}}"
-                    + "?value "
+                    + "SELECT DISTINCT ?list WHERE { <http://fr.dbpedia.org/resource/" + r + "> "
                     + ParseTools.getProperty("http://dbpedia.org/ontology/dbpedia-owl:wikiPageWikiLink")
                     + " ?list "
-                    + ". filter(exists{?list "
-                    + ParseTools.getProperty("http://dbpedia.org/ontology/dbpedia-owl:recordDate")
-                    + " ?recordDate})"
-                    + ".filter(?list != ?value)"
+                    + ".filter(exists{?list "
+                    + ParseTools.getProperty("http://dbpedia.org/ontology/dbpedia-owl:artist")
+                    + "<http://fr.dbpedia.org/resource/" + r + ">})"
                     + "}";
         }
 
         /*
 
-               /* + ". <http://fr.dbpedia.org/resource/" + r + ">"
-                + ParseTools.getProperty("http://dbpedia.org/ontology/dbpedia-owl:activeYearsStartYear")
-                + "?year}";*/
+              SELECT DISTINCT ?list WHERE{
+		<http://fr.dbpedia.org/resource/Aerosmith> dbpedia-owl:wikiPageWikiLink ?list
+		.filter(exists{?list dbpedia-owl:artist <http://fr.dbpedia.org/resource/Aerosmith>})
+}
+
+
+              */
         //+ "SELECT DISTINCT ?value  WHERE {<http://fr.dbpedia.org/resource/" + r + "> dbpedia-owl:genre ?value }";
 
 
@@ -129,7 +128,7 @@ public class callDBPedia {
 
             for (; results.hasNext(); ) {
                 QuerySolution sol = (QuerySolution) results.next();
-                System.out.println("SOL: " + sol);
+                //System.out.println("SOL: " + sol);
                 String answer = sol.get("?list").toString();
                 resource.addProperty(property, answer, XSDDatatype.XSDstring);
             }

@@ -116,6 +116,14 @@ SELECT DISTINCT ?list ?value
 		}
 		.filter(exists{?value dbpedia-owl:album ?album})
 	}
+
+	SELECT DISTINCT ?list WHERE{
+		<http://fr.dbpedia.org/resource/Aerosmith> dbpedia-owl:wikiPageWikiLink ?list
+		.filter(exists{?list dbpedia-owl:artist <http://fr.dbpedia.org/resource/Aerosmith>})
+	}
 	
 	
-	
+	SELECT DISTINCT ?list WHERE { 
+	<http://fr.dbpedia.org/resource/U2> dbpedia-owl:wikiPageWikiLink ?value 
+	.filter(exists{?list dbpedia-owl:wikiPageWikiLink<http://fr.dbpedia.org/resource/U2> })}
+
