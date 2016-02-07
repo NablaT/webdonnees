@@ -16,6 +16,8 @@ public class CleanRdf {
     private ArrayList<String> songElements;
     private ArrayList<String> bandElements;
     private ArrayList<Integer> listOfIndexes;
+    private ArrayList<ArrayList<String>> listOfSongOfDifferentArtists;
+
 
     private String pathSongs;
     private String pathArtists;
@@ -25,6 +27,7 @@ public class CleanRdf {
         this.bandElements=new ArrayList<>();
         this.elementsFromRdf = new ArrayList<>();
         this.listOfIndexes = new ArrayList<Integer>();
+        this.listOfSongOfDifferentArtists= new ArrayList<ArrayList<String>>();
         this.pathArtists="./artists.txt";
         this.pathSongs="songs.txt";
         initialiseSongArtist();
@@ -32,6 +35,12 @@ public class CleanRdf {
 
     public void getBackRdfContent(String pathFile, boolean firstTime) {
         try {
+
+            if(!firstTime){
+                this.elementsFromRdf=new ArrayList<>();
+                System.out.println("initialisation elements from rdf");
+                //this.elementsFromRdf = new ArrayList<>();
+            }
             BufferedReader reader = new BufferedReader(new FileReader(pathFile));
             String line;
             while ((line = reader.readLine()) != null) {
@@ -39,7 +48,7 @@ public class CleanRdf {
             }
             reader.close();
 
-
+            System.out.println("this.element: "+this.elementsFromRdf);
             for (int i = 0; i < 6; i++) {
                 this.elementsFromRdf.remove(0);
             }
@@ -56,13 +65,54 @@ public class CleanRdf {
                 getBackJustGroups(this.listOfIndexes.get(0));
             }
             else{
-
+                System.out.println("ouioui je rentre juste avant la methode");
+                getBackAllSongsFromDifferentArtists(this.listOfIndexes.get(0));
             }
 
         } catch (Exception e) {
             System.err.format("Exception occurred trying to read '%s'.", pathFile);
             e.printStackTrace();
         }
+    }
+
+    public void getBackAllSongsFromDifferentArtists(int index) {
+        System.out.println("OUI JE RENTRE DANS GETBACKKALL, index: "+index);
+        /*for (int i = index; i < index + 2; i++) {
+            this.elementsFromRdf.remove(0);
+        }*/
+
+
+
+        String stringToSplit = "resource";
+        String stringToSplit2 = "<";
+
+        ArrayList<String> tmpArray=new ArrayList<>();
+        // WE MAKE -2 to avoid last balise <rdf:> <rdfDescription>
+        for (int i = 0; i < index-2; i++) {
+            //System.out.println("this.elementsFromRdf.get(i):: "+this.elementsFromRdf.get(i));
+            String finalResult = "";
+            String[] tmpResult = this.elementsFromRdf.get(i).split(stringToSplit);
+            if (tmpResult.length > 0) {
+                try {
+                    tmpResult = tmpResult[1].split(stringToSplit2);
+                    finalResult = tmpResult[0];
+                } catch (Exception e) {
+                    //System.out.println("Too short array");
+                }
+            }
+            finalResult = finalResult.replace("/", "");
+            finalResult = finalResult.replace("_", " ");
+            String stringToSplit3 = "\\(";
+            String[] almostFinal = finalResult.split(stringToSplit3);
+            if (almostFinal.length > 0) {
+                finalResult = almostFinal[0];
+            }
+            if (!(finalResult.equals(""))) {
+                this.elementsFromRdf.set(i, finalResult);
+                tmpArray.add(finalResult);
+            }
+        }
+        this.listOfSongOfDifferentArtists.add(tmpArray);
     }
 
     public void getBackJustSong(int index) {
@@ -179,6 +229,14 @@ public class CleanRdf {
 
     public void setListOfIndexes(ArrayList<Integer> indexes) {
         this.listOfIndexes = indexes;
+    }
+
+    public ArrayList<ArrayList<String>> getListOfSongOfDifferentArtists(){
+        return this.listOfSongOfDifferentArtists;
+    }
+
+    public void setListOfSongOfDifferentArtists(ArrayList<ArrayList<String>> list) {
+        this.listOfSongOfDifferentArtists = list;
     }
 
     public void cleanElements() {

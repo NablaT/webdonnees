@@ -43,6 +43,7 @@ public class Application {
             tmpArray.add(songList.get(i));
             songBandList.add(tmpArray);
         }
+        System.out.println("couple: "+songBandList);
 
         /////////////// ICI TU AS LA LISTE DES ARTISTES //////////////////////////
         ArrayList<String> listOfArtists=new ArrayList<String>();
@@ -71,7 +72,6 @@ public class Application {
         }*/
 
         rdfContent.deleteRecreateFile("data.rdf");
-        rdfContent.getBackRdfContent("data.rdf",false);
         String currentArtist="U2";
         try{
             Model m=  callDBPedia.run(currentArtist,"songOfArtist");
@@ -80,6 +80,12 @@ public class Application {
         }catch (Exception e){
             System.out.println("plop");
         }
+
+        System.out.println("START SECOND PART");
+        //rdfContent.deleteRecreateFile("data.rdf");
+        rdfContent.getBackRdfContent("data.rdf",false);
+        ArrayList<ArrayList<String>> globalList=rdfContent.getListOfSongOfDifferentArtists();
+        System.out.println("global list: "+ globalList);
 
     }
 }
