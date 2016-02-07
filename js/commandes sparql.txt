@@ -125,5 +125,7 @@ SELECT DISTINCT ?list ?value
 	
 	SELECT DISTINCT ?list WHERE { 
 	<http://fr.dbpedia.org/resource/U2> dbpedia-owl:wikiPageWikiLink ?value 
-	.filter(exists{?list dbpedia-owl:wikiPageWikiLink<http://fr.dbpedia.org/resource/U2> })}
+	.filter(exists{?list dbpedia-owl:wikiPageWikiLink<http://fr.dbpedia.org/resource/U2>})
+	}
+
 
