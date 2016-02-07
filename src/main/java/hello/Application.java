@@ -65,27 +65,44 @@ public class Application {
         s6.add("nirvana");
         s6.add("rihanna");
         s6.add("MAGIC!");
+        */
         Map<String, Long> map2 = new YoutubeQuerry().closeSongArtist(listOfArtists);
 
+        ArrayList<String> list=new ArrayList<>();
         for(String s : map2.keySet()) {
             System.out.println("L'artiste " + s + " a " + map2.get(s) + " vues");
-        }*/
-
-        rdfContent.deleteRecreateFile("data.rdf");
-        String currentArtist="U2";
-        try{
-            Model m=  callDBPedia.run(currentArtist,"songOfArtist");
-            PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("data.rdf",true)));
-            m.write(pw,"RDF/XML");
-        }catch (Exception e){
-            System.out.println("plop");
+            list.add(s);
         }
+
+        System.out.println("BEST ARTISTS: "+list);
+        list=rdfContent.refactorName(list);
+        rdfContent.deleteRecreateFile("data.rdf");
+        /*list.add(currentArtist);
+        list.add("ACDC");
+        list.add("Scorpions");
+        list.add("Aerosmith");
+        list.add("Nirvana");*/
+        for(int i=0; i<list.size();i++){
+            try{
+                System.out.println("boucle : "+i+" band: "+list.get(i));
+
+                Model m=  callDBPedia.run(list.get(i),"songOfArtist");
+                PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("data.rdf",true)));
+                m.write(pw,"RDF/XML");
+            }catch (Exception e){
+                System.out.println("plop");
+            }
+        }
+
 
         System.out.println("START SECOND PART");
         //rdfContent.deleteRecreateFile("data.rdf");
         rdfContent.getBackRdfContent("data.rdf",false);
         ArrayList<ArrayList<String>> globalList=rdfContent.getListOfSongOfDifferentArtists();
-        System.out.println("global list: "+ globalList);
+        //System.out.println("global list: "+ globalList);
+        for(int i=0; i<globalList.size();i++){
+            System.out.println("element: "+ globalList.get(i));
+        }
 
     }
 }

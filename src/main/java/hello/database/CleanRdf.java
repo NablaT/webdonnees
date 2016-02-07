@@ -38,7 +38,7 @@ public class CleanRdf {
 
             if(!firstTime){
                 this.elementsFromRdf=new ArrayList<>();
-                System.out.println("initialisation elements from rdf");
+                //System.out.println("initialisation elements from rdf");
                 //this.elementsFromRdf = new ArrayList<>();
             }
             BufferedReader reader = new BufferedReader(new FileReader(pathFile));
@@ -48,7 +48,7 @@ public class CleanRdf {
             }
             reader.close();
 
-            System.out.println("this.element: "+this.elementsFromRdf);
+            //System.out.println("this.element: "+this.elementsFromRdf);
             for (int i = 0; i < 6; i++) {
                 this.elementsFromRdf.remove(0);
             }
@@ -65,8 +65,14 @@ public class CleanRdf {
                 getBackJustGroups(this.listOfIndexes.get(0));
             }
             else{
-                System.out.println("ouioui je rentre juste avant la methode");
-                getBackAllSongsFromDifferentArtists(this.listOfIndexes.get(0));
+                //System.out.println("ouioui je rentre juste avant la methode");
+                for(int i=0; i<this.listOfIndexes.size();i=i+2){
+                    //System.out.println("list of indexes i+1: "+this.listOfIndexes.get(i+1));
+                    //System.out.println("list of indexes i: "+this.listOfIndexes.get(i));
+                    int numberOfIteration=this.listOfIndexes.get(i+1)-this.listOfIndexes.get(i);
+                    //System.out.println("number of iteration: "+numberOfIteration);
+                    getBackAllSongsFromDifferentArtists(this.listOfIndexes.get(i)+2, numberOfIteration-3);
+                }
             }
 
         } catch (Exception e) {
@@ -75,8 +81,10 @@ public class CleanRdf {
         }
     }
 
-    public void getBackAllSongsFromDifferentArtists(int index) {
-        System.out.println("OUI JE RENTRE DANS GETBACKKALL, index: "+index);
+    public void getBackAllSongsFromDifferentArtists(int index, int numberOfIteration) {
+        /*System.out.println("OUI JE RENTRE DANS GETBACKKALL, index: "+index+" number of" +
+                "iteration: "+numberOfIteration+ "size of elementsfromrdf: " +
+                this.elementsFromRdf.size());
         /*for (int i = index; i < index + 2; i++) {
             this.elementsFromRdf.remove(0);
         }*/
@@ -88,9 +96,10 @@ public class CleanRdf {
 
         ArrayList<String> tmpArray=new ArrayList<>();
         // WE MAKE -2 to avoid last balise <rdf:> <rdfDescription>
-        for (int i = 0; i < index-2; i++) {
+        for (int i = index+3; i <index+numberOfIteration; i++) {
             //System.out.println("this.elementsFromRdf.get(i):: "+this.elementsFromRdf.get(i));
             String finalResult = "";
+            //System.out.println("this.element: "+ this.elementsFromRdf.get(i));
             String[] tmpResult = this.elementsFromRdf.get(i).split(stringToSplit);
             if (tmpResult.length > 0) {
                 try {
@@ -277,5 +286,29 @@ public class CleanRdf {
         } catch(Exception e) {
             System.out.println(e);
         }
+    }
+
+    public ArrayList<String> refactorName(ArrayList<String> list){
+
+        for(int i=0; i<list.size();i++){
+            boolean hasASpaceAtEnd=false;
+            String currentWord= list.get(i);
+            //We verify if there is no space at the end, if there is, we remove it
+            if(list.get(i).charAt(list.get(i).length()-1)==' '){
+                currentWord=removeSpaceAtEnd(currentWord);
+            }
+            currentWord = currentWord.replace(" ", "_");
+            list.set(i, currentWord);
+        }
+        System.out.println("new list: "+list);
+        return list;
+    }
+
+    public String removeSpaceAtEnd(String word){
+        String res="";
+        for(int i=0; i<word.length()-1;i++){
+            res+=word.charAt(i);
+        }
+        return res;
     }
 }
