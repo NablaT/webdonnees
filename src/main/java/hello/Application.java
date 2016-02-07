@@ -1,14 +1,21 @@
 package hello;
 
 import hello.database.CleanRdf;
+import hello.jenaEngine.callDBPedia;
 import hello.youtubeEngine.YoutubeQuerry;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import org.apache.jena.rdf.model.Model;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 @SpringBootApplication
 public class Application {
@@ -59,6 +66,14 @@ public class Application {
 
         for(String s : map2.keySet()) {
             System.out.println("L'artiste " + s + " a " + map2.get(s) + " vues");
+        }
+
+        try{
+            Model m=  callDBPedia.run(listOfArtists.get(0),"club");
+            PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("data.rdf",true)));
+            m.write(pw,"RDF/XML");
+        }catch (Exception e){
+            System.out.println("plop");
         }
 
     }

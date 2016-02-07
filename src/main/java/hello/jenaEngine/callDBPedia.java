@@ -87,6 +87,28 @@ public class callDBPedia {
                     + ".filter(?list != ?value)"
                     + "}";
         }
+        else if(type.equals("songOfArtist")){
+            System.out.println("Hello I'm the song artist part");
+            query = "PREFIX foaf: <http://xmlns.com/foaf/0.1/> "
+                    + "PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>"
+                    + "PREFIX dcterms: <http://purl.org/dc/terms/>"
+                    + "PREFIX prop-fr: <http://fr.dbpedia.org/property/>"
+                    + "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
+                    + "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
+                    + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
+                    + "SELECT DISTINCT ?list WHERE{ {SELECT DISTINCT ?value ?year WHERE { <http://fr.dbpedia.org/resource/" + r + "> "
+                    + ParseTools.getProperty("http://dbpedia.org/ontology/dbpedia-owl:album")
+                    + " ?value "
+                    + "}}"
+                    + "?value "
+                    + ParseTools.getProperty("http://dbpedia.org/ontology/dbpedia-owl:wikiPageWikiLink")
+                    + " ?list "
+                    + ". filter(exists{?list "
+                    + ParseTools.getProperty("http://dbpedia.org/ontology/dbpedia-owl:recordDate")
+                    + " ?recordDate})"
+                    + ".filter(?list != ?value)"
+                    + "}";
+        }
 
         /*
 

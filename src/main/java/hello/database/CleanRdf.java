@@ -21,7 +21,7 @@ public class CleanRdf {
         this.elementsFromRdf = new ArrayList<String>();
         this.pathArtists="artists.txt";
         this.pathSongs="songs.txt";
-        //initialiseSongArtist();
+        initialiseSongArtist();
     }
 
     public void getBackRdfContent(String pathFile) {
@@ -156,11 +156,11 @@ public class CleanRdf {
     }
 
     public void initialiseSongArtist(){
-        BufferedReader reader = new BufferedReader(new FileReader(this.pathSongs));
+        /*BufferedReader reader = new BufferedReader(new FileReader(this.pathSongs));
         String line;
         while ((line = reader.readLine()) != null) {
             this.elementsFromRdf.add(line);
         }
-        reader.close();
+        reader.close();*/
     }
 }
