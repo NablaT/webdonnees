@@ -83,38 +83,15 @@ public class Application {
             System.out.println("plop");
         }*/
 
-        FileInputStream in;
-        OntModel ontologie = ModelFactory.createOntologyModel();
-        try
-        {
-            in=new FileInputStream("ontologie.xml");
-            if(in.read() > 0) {
-                System.out.println("Je passe dans le if");
-                ontologie.read(in,null, "RDF/XML");
-            } else {
-                System.out.println("Je passe dans le else");
-                ontologie = new Ontologie().create();
-            }
-        }
-        catch (Exception ex)
-        {
-            System.out.println("Je passe dans le catch");
-            ontologie = new Ontologie().create();
-        }
+        Ontologie OntologieClass = new Ontologie();
+        OntModel ontologie = OntologieClass.load();
 
-        /*OntClass song = ontologie.getOntClass("http://notreOnthologie#Song");
-        ontologie.createIndividual("http://notreOnthologie#Yesterday", song);*/
+        OntClass song = ontologie.getOntClass("http://notreOnthologie#Song");
+        System.out.println(song);
+        ontologie.createIndividual("http://notreOnthologie#Hello", song);
+        ontologie.createIndividual("http://notreOnthologie#Rude!", song);
 
-        FileOutputStream fichierSortie = null;
+        OntologieClass.write(ontologie);
 
-        try {
-            fichierSortie = new FileOutputStream("ontologie.xml");
-        }
-        catch (FileNotFoundException ex) {
-            System.out.println(ex);
-            Logger.getLogger (Main.class.getName ()).log (Level.SEVERE, null, ex);
-        }
-
-        ontologie.write(fichierSortie, "RDF/XML");
     }
 }
