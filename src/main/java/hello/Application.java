@@ -27,7 +27,7 @@ public class Application {
 
         //On initialise la classe qui gere le contenu du rdf
         CleanRdf rdfContent=new CleanRdf();
-        rdfContent.getBackRdfContent("data.rdf");
+        rdfContent.getBackRdfContent("data.rdf", true);
        // System.out.println(rdfContent.getElements());
 
         rdfContent.cleanElements();
@@ -56,7 +56,8 @@ public class Application {
             System.out.println("La chanson " + s + " a " + map.get(s) + " vues");
         }
 
-        rdfContent.initialiseListOfIndexes();
+
+        //rdfContent.initialiseListOfIndexes();
         /*List<String> s6 = new ArrayList<>();
         s6.add("beatles");
         s6.add("adele");
@@ -69,6 +70,8 @@ public class Application {
             System.out.println("L'artiste " + s + " a " + map2.get(s) + " vues");
         }*/
 
+        rdfContent.deleteRecreateFile("data.rdf");
+        rdfContent.getBackRdfContent("data.rdf",false);
         String currentArtist="U2";
         try{
             Model m=  callDBPedia.run(currentArtist,"songOfArtist");

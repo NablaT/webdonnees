@@ -2,6 +2,9 @@ package hello.database;
 
 import java.io.*;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 /**
@@ -27,7 +30,7 @@ public class CleanRdf {
         initialiseSongArtist();
     }
 
-    public void getBackRdfContent(String pathFile) {
+    public void getBackRdfContent(String pathFile, boolean firstTime) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(pathFile));
             String line;
@@ -46,11 +49,15 @@ public class CleanRdf {
 
             int breakPoint = this.elementsFromRdf.indexOf("</rdf:RDF>");
 
-            System.out.println("MYBREAKPOINT: "+breakPoint);
             initialiseListOfIndexes();
 
-            getBackJustSong(this.listOfIndexes.get(0));
-            getBackJustGroups(this.listOfIndexes.get(0));
+            if(firstTime){
+                getBackJustSong(this.listOfIndexes.get(0));
+                getBackJustGroups(this.listOfIndexes.get(0));
+            }
+            else{
+
+            }
 
         } catch (Exception e) {
             System.err.format("Exception occurred trying to read '%s'.", pathFile);
@@ -109,7 +116,6 @@ public class CleanRdf {
             finalResult = finalResult.replace("/", "");
             finalResult = finalResult.replace("_", " ");
             String stringToSplit3 = "\\(";
-            //System.out.println("the character to split: "+stringToSplit3);
             String[] almostFinal = finalResult.split(stringToSplit3);
             if (almostFinal.length > 0) {
                 finalResult = almostFinal[0];
@@ -119,7 +125,22 @@ public class CleanRdf {
                 this.bandElements.add(finalResult);
             }
         }
-        //System.out.println("GROUP LIST: "+this.bandElements);
+
+    }
+
+    public void deleteRecreateFile(String path){
+        Path mypath= Paths.get(path);
+        try{
+            System.out.println("jerentre");
+            Files.delete(mypath);
+            //Files.write(mypath);
+            PrintWriter writer = new PrintWriter(path);
+            writer.close();
+            System.out.println("jessort");
+        }
+        catch(Exception e){
+            System.out.println("Error in deleting/creating file data.rdf");
+        }
     }
 
     public void removeSongsFromArrayRdf(int index){
@@ -173,7 +194,6 @@ public class CleanRdf {
         this.listOfIndexes=new ArrayList<>();
         for(int i=0; i<this.elementsFromRdf.size();i++){
             if(this.elementsFromRdf.get(i).indexOf("</rdf:RDF>")!=-1){
-                System.out.println("elementsFrom rdf current: "+ this.elementsFromRdf.get(i));
                 this.listOfIndexes.add(i);
             }
         }
