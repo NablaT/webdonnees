@@ -56,17 +56,18 @@ public class Application {
             System.out.println("La chanson " + s + " a " + map.get(s) + " vues");
         }
 
+        rdfContent.initialiseListOfIndexes();
         /*List<String> s6 = new ArrayList<>();
         s6.add("beatles");
         s6.add("adele");
         s6.add("nirvana");
         s6.add("rihanna");
-        s6.add("MAGIC!");*/
+        s6.add("MAGIC!");
         Map<String, Long> map2 = new YoutubeQuerry().closeSongArtist(listOfArtists);
 
         for(String s : map2.keySet()) {
             System.out.println("L'artiste " + s + " a " + map2.get(s) + " vues");
-        }
+        }*/
 
         String currentArtist="U2";
         try{

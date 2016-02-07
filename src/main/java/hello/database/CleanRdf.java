@@ -12,6 +12,8 @@ public class CleanRdf {
     private ArrayList<String> elementsFromRdf;
     private ArrayList<String> songElements;
     private ArrayList<String> bandElements;
+    private ArrayList<Integer> listOfIndexes;
+
     private String pathSongs;
     private String pathArtists;
 
@@ -19,6 +21,7 @@ public class CleanRdf {
         this.songElements=new ArrayList<>();
         this.bandElements=new ArrayList<>();
         this.elementsFromRdf = new ArrayList<>();
+        this.listOfIndexes = new ArrayList<Integer>();
         this.pathArtists="./artists.txt";
         this.pathSongs="songs.txt";
         initialiseSongArtist();
@@ -43,8 +46,11 @@ public class CleanRdf {
 
             int breakPoint = this.elementsFromRdf.indexOf("</rdf:RDF>");
 
-            getBackJustSong(breakPoint);
-            getBackJustGroups(breakPoint);
+            System.out.println("MYBREAKPOINT: "+breakPoint);
+            initialiseListOfIndexes();
+
+            getBackJustSong(this.listOfIndexes.get(0));
+            getBackJustGroups(this.listOfIndexes.get(0));
 
         } catch (Exception e) {
             System.err.format("Exception occurred trying to read '%s'.", pathFile);
@@ -146,6 +152,14 @@ public class CleanRdf {
         this.bandElements = elements;
     }
 
+    public ArrayList<Integer> getListOfIndexes() {
+        return this.listOfIndexes;
+    }
+
+    public void setListOfIndexes(ArrayList<Integer> indexes) {
+        this.listOfIndexes = indexes;
+    }
+
     public void cleanElements() {
         for (int i = 0; i < this.elementsFromRdf.size(); i++) {
             if (this.elementsFromRdf.get(i).equals("")) {
@@ -153,6 +167,17 @@ public class CleanRdf {
                 i = i - 1;
             }
         }
+    }
+
+    public void initialiseListOfIndexes(){
+        this.listOfIndexes=new ArrayList<>();
+        for(int i=0; i<this.elementsFromRdf.size();i++){
+            if(this.elementsFromRdf.get(i).indexOf("</rdf:RDF>")!=-1){
+                System.out.println("elementsFrom rdf current: "+ this.elementsFromRdf.get(i));
+                this.listOfIndexes.add(i);
+            }
+        }
+        System.out.println("list of indexes: "+ this.listOfIndexes);
     }
 
     /**
