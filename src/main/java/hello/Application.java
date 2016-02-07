@@ -1,21 +1,27 @@
 package hello;
 
-import hello.database.CleanRdf;
-import hello.jenaEngine.callDBPedia;
-import hello.youtubeEngine.YoutubeQuerry;
-import org.springframework.boot.SpringApplication;
+import hello.jenaEngine.Ontologie;
+import org.apache.jena.datatypes.RDFDatatype;
+import org.apache.jena.graph.Graph;
+import org.apache.jena.graph.Node;
+import org.apache.jena.graph.Triple;
+import org.apache.jena.iri.impl.Main;
+import org.apache.jena.ontology.*;
+import org.apache.jena.ontology.impl.OntModelImpl;
+import org.apache.jena.rdf.model.*;
+import org.apache.jena.reasoner.Derivation;
+import org.apache.jena.reasoner.Reasoner;
+import org.apache.jena.reasoner.ValidityReport;
+import org.apache.jena.shared.Command;
+import org.apache.jena.shared.Lock;
+import org.apache.jena.shared.PrefixMapping;
+import org.apache.jena.util.iterator.ExtendedIterator;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import org.apache.jena.rdf.model.Model;
-
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ExecutionException;
+import java.io.*;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @SpringBootApplication
 public class Application {
@@ -23,7 +29,7 @@ public class Application {
     public static void main(String[] args) {
 
 
-        SpringApplication.run(Application.class, args);
+        /*SpringApplication.run(Application.class, args);
 
         //On initialise la classe qui gere le contenu du rdf
         CleanRdf rdfContent=new CleanRdf();
@@ -45,8 +51,8 @@ public class Application {
         }
 
         /////////////// ICI TU AS LA LISTE DES ARTISTES //////////////////////////
-        ArrayList<String> listOfArtists=new ArrayList<String>();
-        listOfArtists=rdfContent.getBandElements();
+        List<String> listOfArtists;
+        listOfArtists = rdfContent.getBandElements();
         System.out.println("List of artists: "+ listOfArtists);
 
         //On met la list des chansons associées a leurs artistes ex: [beatles,yesterday]
@@ -56,12 +62,12 @@ public class Application {
             System.out.println("La chanson " + s + " a " + map.get(s) + " vues");
         }
 
-        /*List<String> s6 = new ArrayList<>();
+        *//*List<String> s6 = new ArrayList<>();
         s6.add("beatles");
         s6.add("adele");
         s6.add("nirvana");
         s6.add("rihanna");
-        s6.add("MAGIC!");*/
+        s6.add("MAGIC!");*//*
         Map<String, Long> map2 = new YoutubeQuerry().closeSongArtist(listOfArtists);
 
         for(String s : map2.keySet()) {
@@ -75,7 +81,40 @@ public class Application {
             m.write(pw,"RDF/XML");
         }catch (Exception e){
             System.out.println("plop");
+        }*/
+
+        FileInputStream in;
+        OntModel ontologie = ModelFactory.createOntologyModel();
+        try
+        {
+            in=new FileInputStream("ontologie.xml");
+            if(in.read() > 0) {
+                System.out.println("Je passe dans le if");
+                ontologie.read(in,null, "RDF/XML");
+            } else {
+                System.out.println("Je passe dans le else");
+                ontologie = new Ontologie().create();
+            }
+        }
+        catch (Exception ex)
+        {
+            System.out.println("Je passe dans le catch");
+            ontologie = new Ontologie().create();
         }
 
+        /*OntClass song = ontologie.getOntClass("http://notreOnthologie#Song");
+        ontologie.createIndividual("http://notreOnthologie#Yesterday", song);*/
+
+        FileOutputStream fichierSortie = null;
+
+        try {
+            fichierSortie = new FileOutputStream("ontologie.xml");
+        }
+        catch (FileNotFoundException ex) {
+            System.out.println(ex);
+            Logger.getLogger (Main.class.getName ()).log (Level.SEVERE, null, ex);
+        }
+
+        ontologie.write(fichierSortie, "RDF/XML");
     }
 }
