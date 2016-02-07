@@ -23,22 +23,21 @@ public class CleanRdf {
     private String pathArtists;
 
     public CleanRdf() {
-        this.songElements=new ArrayList<>();
-        this.bandElements=new ArrayList<>();
+        this.songElements = new ArrayList<>();
+        this.bandElements = new ArrayList<>();
         this.elementsFromRdf = new ArrayList<>();
         this.listOfIndexes = new ArrayList<Integer>();
-        this.listOfSongOfDifferentArtists= new ArrayList<ArrayList<String>>();
-        this.pathArtists="./artists.txt";
-        this.pathSongs="songs.txt";
+        this.listOfSongOfDifferentArtists = new ArrayList<ArrayList<String>>();
+        this.pathArtists = "./artists.txt";
+        this.pathSongs = "songs.txt";
         initialiseSongArtist();
     }
 
     public void getBackRdfContent(String pathFile, boolean firstTime) {
         try {
 
-            if(!firstTime){
-                this.elementsFromRdf=new ArrayList<>();
-                //System.out.println("initialisation elements from rdf");
+            if (!firstTime) {
+                this.elementsFromRdf = new ArrayList<>();
                 //this.elementsFromRdf = new ArrayList<>();
             }
             BufferedReader reader = new BufferedReader(new FileReader(pathFile));
@@ -48,8 +47,7 @@ public class CleanRdf {
             }
             reader.close();
 
-            //System.out.println("this.element: "+this.elementsFromRdf);
-            for (int i = 0; i < 6; i++) {
+           for (int i = 0; i < 6; i++) {
                 this.elementsFromRdf.remove(0);
             }
 
@@ -60,18 +58,13 @@ public class CleanRdf {
 
             initialiseListOfIndexes();
 
-            if(firstTime){
+            if (firstTime) {
                 getBackJustSong(this.listOfIndexes.get(0));
                 getBackJustGroups(this.listOfIndexes.get(0));
-            }
-            else{
-                //System.out.println("ouioui je rentre juste avant la methode");
-                for(int i=0; i<this.listOfIndexes.size();i=i+2){
-                    //System.out.println("list of indexes i+1: "+this.listOfIndexes.get(i+1));
-                    //System.out.println("list of indexes i: "+this.listOfIndexes.get(i));
-                    int numberOfIteration=this.listOfIndexes.get(i+1)-this.listOfIndexes.get(i);
-                    //System.out.println("number of iteration: "+numberOfIteration);
-                    getBackAllSongsFromDifferentArtists(this.listOfIndexes.get(i)+2, numberOfIteration-3);
+            } else {
+                for (int i = 0; i < this.listOfIndexes.size(); i = i + 2) {
+                    int numberOfIteration = this.listOfIndexes.get(i + 1) - this.listOfIndexes.get(i);
+                    getBackAllSongsFromDifferentArtists(this.listOfIndexes.get(i) + 2, numberOfIteration - 3);
                 }
             }
 
@@ -82,24 +75,14 @@ public class CleanRdf {
     }
 
     public void getBackAllSongsFromDifferentArtists(int index, int numberOfIteration) {
-        /*System.out.println("OUI JE RENTRE DANS GETBACKKALL, index: "+index+" number of" +
-                "iteration: "+numberOfIteration+ "size of elementsfromrdf: " +
-                this.elementsFromRdf.size());
-        /*for (int i = index; i < index + 2; i++) {
-            this.elementsFromRdf.remove(0);
-        }*/
-
-
 
         String stringToSplit = "resource";
         String stringToSplit2 = "<";
 
-        ArrayList<String> tmpArray=new ArrayList<>();
+        ArrayList<String> tmpArray = new ArrayList<>();
         // WE MAKE -2 to avoid last balise <rdf:> <rdfDescription>
-        for (int i = index+3; i <index+numberOfIteration; i++) {
-            //System.out.println("this.elementsFromRdf.get(i):: "+this.elementsFromRdf.get(i));
+        for (int i = index + 3; i < index + numberOfIteration; i++) {
             String finalResult = "";
-            //System.out.println("this.element: "+ this.elementsFromRdf.get(i));
             String[] tmpResult = this.elementsFromRdf.get(i).split(stringToSplit);
             if (tmpResult.length > 0) {
                 try {
@@ -145,7 +128,7 @@ public class CleanRdf {
             if (almostFinal.length > 0) {
                 finalResult = almostFinal[0];
             }
-            if(!(finalResult.equals(""))){
+            if (!(finalResult.equals(""))) {
                 this.elementsFromRdf.set(i, finalResult);
                 this.songElements.add(finalResult);
             }
@@ -161,7 +144,7 @@ public class CleanRdf {
         String stringToSplit = "resource";
         String stringToSplit2 = "<";
         // WE MAKE -2 to avoid last balise <rdf:> <rdfDescription>
-        for (int i = 0; i < this.elementsFromRdf.size()-2; i++) {
+        for (int i = 0; i < this.elementsFromRdf.size() - 2; i++) {
             String finalResult = "";
             String[] tmpResult = this.elementsFromRdf.get(i).split(stringToSplit);
             if (tmpResult.length > 0) {
@@ -179,7 +162,7 @@ public class CleanRdf {
             if (almostFinal.length > 0) {
                 finalResult = almostFinal[0];
             }
-            if(!(finalResult.equals(""))){
+            if (!(finalResult.equals(""))) {
                 this.elementsFromRdf.set(i, finalResult);
                 this.bandElements.add(finalResult);
             }
@@ -187,23 +170,22 @@ public class CleanRdf {
 
     }
 
-    public void deleteRecreateFile(String path){
-        Path mypath= Paths.get(path);
-        try{
+    public void deleteRecreateFile(String path) {
+        Path mypath = Paths.get(path);
+        try {
             System.out.println("jerentre");
             Files.delete(mypath);
             //Files.write(mypath);
             PrintWriter writer = new PrintWriter(path);
             writer.close();
             System.out.println("jessort");
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Error in deleting/creating file data.rdf");
         }
     }
 
-    public void removeSongsFromArrayRdf(int index){
-        for(int i=0;i<index; i++){
+    public void removeSongsFromArrayRdf(int index) {
+        for (int i = 0; i < index; i++) {
             this.elementsFromRdf.remove(0);
         }
     }
@@ -240,7 +222,7 @@ public class CleanRdf {
         this.listOfIndexes = indexes;
     }
 
-    public ArrayList<ArrayList<String>> getListOfSongOfDifferentArtists(){
+    public ArrayList<ArrayList<String>> getListOfSongOfDifferentArtists() {
         return this.listOfSongOfDifferentArtists;
     }
 
@@ -257,21 +239,21 @@ public class CleanRdf {
         }
     }
 
-    public void initialiseListOfIndexes(){
-        this.listOfIndexes=new ArrayList<>();
-        for(int i=0; i<this.elementsFromRdf.size();i++){
-            if(this.elementsFromRdf.get(i).indexOf("</rdf:RDF>")!=-1){
+    public void initialiseListOfIndexes() {
+        this.listOfIndexes = new ArrayList<>();
+        for (int i = 0; i < this.elementsFromRdf.size(); i++) {
+            if (this.elementsFromRdf.get(i).indexOf("</rdf:RDF>") != -1) {
                 this.listOfIndexes.add(i);
             }
         }
-        System.out.println("list of indexes: "+ this.listOfIndexes);
+
     }
 
     /**
      * This function saves our current Artist or Song in order to remove it from the final
      * answer we have.
      */
-    public void initialiseSongArtist(){
+    public void initialiseSongArtist() {
         try {
             URL url = getClass().getResource("/src/main/java/hello/database/songs.txt");
             File file = new File(url.getPath());
@@ -283,31 +265,30 @@ public class CleanRdf {
                 this.elementsFromRdf.add(line);
             }
             reader.close();
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
 
-    public ArrayList<String> refactorName(ArrayList<String> list){
+    public ArrayList<String> refactorName(ArrayList<String> list) {
 
-        for(int i=0; i<list.size();i++){
-            boolean hasASpaceAtEnd=false;
-            String currentWord= list.get(i);
+        for (int i = 0; i < list.size(); i++) {
+            boolean hasASpaceAtEnd = false;
+            String currentWord = list.get(i);
             //We verify if there is no space at the end, if there is, we remove it
-            if(list.get(i).charAt(list.get(i).length()-1)==' '){
-                currentWord=removeSpaceAtEnd(currentWord);
+            if (list.get(i).charAt(list.get(i).length() - 1) == ' ') {
+                currentWord = removeSpaceAtEnd(currentWord);
             }
             currentWord = currentWord.replace(" ", "_");
             list.set(i, currentWord);
         }
-        System.out.println("new list: "+list);
         return list;
     }
 
-    public String removeSpaceAtEnd(String word){
-        String res="";
-        for(int i=0; i<word.length()-1;i++){
-            res+=word.charAt(i);
+    public String removeSpaceAtEnd(String word) {
+        String res = "";
+        for (int i = 0; i < word.length() - 1; i++) {
+            res += word.charAt(i);
         }
         return res;
     }
