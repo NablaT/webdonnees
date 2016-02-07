@@ -22,6 +22,9 @@ public class CleanRdf {
     private String pathSongs;
     private String pathArtists;
 
+    /**
+     * Default constructor. Initializes all attributes of the class
+     */
     public CleanRdf() {
         this.songElements = new ArrayList<>();
         this.bandElements = new ArrayList<>();
@@ -33,6 +36,13 @@ public class CleanRdf {
         initialiseSongArtist();
     }
 
+    /**
+     * This function gets back data from rdf file and store them
+     * in class attributes. We run it two times, one after requesting
+     * dbpedia on club and music and another after merging data.
+     * @param pathFile
+     * @param firstTime
+     */
     public void getBackRdfContent(String pathFile, boolean firstTime) {
         try {
 
@@ -74,6 +84,12 @@ public class CleanRdf {
         }
     }
 
+
+    /**
+     * This function gets back all song of all our artists.
+     * @param index
+     * @param numberOfIteration
+     */
     public void getBackAllSongsFromDifferentArtists(int index, int numberOfIteration) {
 
         String stringToSplit = "resource";
@@ -107,6 +123,10 @@ public class CleanRdf {
         this.listOfSongOfDifferentArtists.add(tmpArray);
     }
 
+    /**
+     * This function gets back all the song of the same albums
+     * @param index
+     */
     public void getBackJustSong(int index) {
         String stringToSplit = "resource";
         String stringToSplit2 = "<";
@@ -136,6 +156,11 @@ public class CleanRdf {
         removeSongsFromArrayRdf(index);
     }
 
+    /**
+     * THis function gets back all bands and artists presented
+     * in our rdf.
+     * @param index
+     */
     public void getBackJustGroups(int index) {
         for (int i = index; i < index + 6; i++) {
             this.elementsFromRdf.remove(0);
@@ -170,6 +195,11 @@ public class CleanRdf {
 
     }
 
+    /**
+     * This function delete a file located at the path in parameter
+     * and recreate it with the same name.
+     * @param path
+     */
     public void deleteRecreateFile(String path) {
         Path mypath = Paths.get(path);
         try {
@@ -184,52 +214,104 @@ public class CleanRdf {
         }
     }
 
+    /**
+     * This function removes song from array
+     * @param index
+     */
     public void removeSongsFromArrayRdf(int index) {
         for (int i = 0; i < index; i++) {
             this.elementsFromRdf.remove(0);
         }
     }
 
+    /**
+     * THis function gets back all the element from rdf (attributes
+     * of the class)
+     * @return
+     */
     public ArrayList<String> getElements() {
         return this.elementsFromRdf;
     }
 
+    /**
+     * This function sets the elementsFromRdf
+     * @param elements
+     */
     public void setElements(ArrayList<String> elements) {
         this.elementsFromRdf = elements;
     }
 
+    /**
+     * This function gets the list of song
+     * @return
+     */
     public ArrayList<String> getSongElements() {
         return this.songElements;
     }
 
+    /**
+     * This function sets the list of song
+     * @param elements
+     */
     public void setSongElements(ArrayList<String> elements) {
         this.songElements = elements;
     }
 
+    /**
+     * This function gets the list of bands.
+     * @return
+     */
     public ArrayList<String> getBandElements() {
         return this.bandElements;
     }
 
+    /**
+     * This function sets the list of bands
+     * @param elements
+     */
     public void setBandElements(ArrayList<String> elements) {
         this.bandElements = elements;
     }
 
+    /**
+     * THis function gets the list of indexes. This is the reference
+     * of all </rdf> balises
+     * @return
+     */
     public ArrayList<Integer> getListOfIndexes() {
         return this.listOfIndexes;
     }
 
+    /**
+     * This function sets the list of indexes.
+     * @param indexes
+     */
     public void setListOfIndexes(ArrayList<Integer> indexes) {
         this.listOfIndexes = indexes;
     }
 
+    /**
+     * THis function gets the total list of song from different
+     * artists
+     * @return
+     */
     public ArrayList<ArrayList<String>> getListOfSongOfDifferentArtists() {
         return this.listOfSongOfDifferentArtists;
     }
 
+    /**
+     * This function sets the total list of song from different
+     * artists
+     * @param list
+     */
     public void setListOfSongOfDifferentArtists(ArrayList<ArrayList<String>> list) {
         this.listOfSongOfDifferentArtists = list;
     }
 
+    /**
+     * This function cleans the attributes elementsFromRdf when
+     * an element is empty (equals to "").
+     */
     public void cleanElements() {
         for (int i = 0; i < this.elementsFromRdf.size(); i++) {
             if (this.elementsFromRdf.get(i).equals("")) {
@@ -239,6 +321,11 @@ public class CleanRdf {
         }
     }
 
+    /**
+     * This function initialises the list of indexes.
+     * The indexes corresponds to the line the following
+     * balise: </rdf:RDF>
+     */
     public void initialiseListOfIndexes() {
         this.listOfIndexes = new ArrayList<>();
         for (int i = 0; i < this.elementsFromRdf.size(); i++) {
@@ -270,6 +357,13 @@ public class CleanRdf {
         }
     }
 
+    /**
+     * Function refactorName. This function refactor the name
+     * of the songs, it replaces spaces by "_" and removing
+     * unused spaces at the end.
+     * @param list
+     * @return
+     */
     public ArrayList<String> refactorName(ArrayList<String> list) {
 
         for (int i = 0; i < list.size(); i++) {
@@ -285,6 +379,12 @@ public class CleanRdf {
         return list;
     }
 
+    /**
+     * This function removes spaces at the end of a song
+     * title.
+     * @param word
+     * @return
+     */
     public String removeSpaceAtEnd(String word) {
         String res = "";
         for (int i = 0; i < word.length() - 1; i++) {
