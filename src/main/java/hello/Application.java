@@ -90,30 +90,6 @@ public class Application {
         }
 
 
-        Ontologie OntologieClass = new Ontologie();
-        OntModel ontologie = OntologieClass.load();
-
-        List<String> listSong = new ArrayList<>();
-        listSong.add("Help!");
-        listSong.add("I Need You");
-
-        List<String> listSongArtist = new ArrayList<>();
-        listSongArtist.add("Smell like teen's spirit");
-        listSongArtist.add("Lithium");
-
-        List<String> listSongArtist2 = new ArrayList<>();
-        listSongArtist2.add("Hello");
-        listSongArtist2.add("Rolling in the deep");
-
-        Map<String, List<String>> mapArtist = new HashMap<>();
-        mapArtist.put("Nirvana", listSongArtist);
-        mapArtist.put("Adele", listSongArtist2);
-
-        OntologieClass.add(ontologie, 1, "Yesterday", "Beatles", listSong, mapArtist);
-
-        OntologieClass.write(ontologie);
-
-
         //rdfContent.deleteRecreateFile("data.rdf");
         rdfContent.getBackRdfContent("data.rdf", false);
         ArrayList<ArrayList<String>> globalList = rdfContent.getListOfSongOfDifferentArtists();
@@ -157,7 +133,16 @@ public class Application {
 
         /*for(int i=0;i<finalSongArtistList.size();i++){
 
-        }*/
+        }
+
+        Ontologie OntologieClass = new Ontologie();
+        OntModel ontologie = OntologieClass.load();
+
+
+        OntologieClass.add(ontologie, 1, song, artist, songAlbum, allArtistAndSong);
+
+        OntologieClass.write(ontologie);*/
+
 
     }
 }
