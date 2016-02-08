@@ -34,7 +34,7 @@ public class Application {
 
 
         SpringApplication.run(Application.class, args);
-
+        System.out.println("test");
         //On initialise la classe qui gere le contenu du rdf
         CleanRdf rdfContent = new CleanRdf();
         rdfContent.getBackRdfContent("data.rdf", true);
