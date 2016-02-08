@@ -113,7 +113,8 @@ public class Application {
 
         //On cree le couple [nom du groupe, chanson]
         //On veut récuperer ces couples pour toutes les chansons des 5 artistes
-
+        System.out.println("list of artiste before: "+ list);
+        list=rdfContent.removeUnderscore(list);
         List<List<List<String>>> globalSongBandList = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
             List<List<String>> songBandList2 = new ArrayList<>();

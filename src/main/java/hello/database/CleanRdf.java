@@ -392,4 +392,14 @@ public class CleanRdf {
         }
         return res;
     }
+
+    public ArrayList<String> removeUnderscore(ArrayList<String> artistList){
+
+        for(int i=0; i<artistList.size();i++){
+
+            artistList.set(i,artistList.get(i).replace("_", " "));
+        }
+        System.out.println("list of artist after"+artistList);
+        return artistList;
+    }
 }
