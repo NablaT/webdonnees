@@ -40,6 +40,7 @@ public class CleanRdf {
      * This function gets back data from rdf file and store them
      * in class attributes. We run it two times, one after requesting
      * dbpedia on club and music and another after merging data.
+     *
      * @param pathFile
      * @param firstTime
      */
@@ -57,7 +58,7 @@ public class CleanRdf {
             }
             reader.close();
 
-           for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < 6; i++) {
                 this.elementsFromRdf.remove(0);
             }
 
@@ -87,6 +88,7 @@ public class CleanRdf {
 
     /**
      * This function gets back all song of all our artists.
+     *
      * @param index
      * @param numberOfIteration
      */
@@ -110,21 +112,33 @@ public class CleanRdf {
             }
             finalResult = finalResult.replace("/", "");
             finalResult = finalResult.replace("_", " ");
+            boolean isAnAlbum=false;
+            System.out.println("almost final: "+ finalResult);
+            if (finalResult.contains("album") || finalResult.contains("chanson")) {
+                isAnAlbum=true;
+            }
             String stringToSplit3 = "\\(";
             String[] almostFinal = finalResult.split(stringToSplit3);
+
+
             if (almostFinal.length > 0) {
                 finalResult = almostFinal[0];
+                /*if (almostFinal[1].contains("album")) {
+                    isAnAlbum=true;
+                }*/
             }
-            if (!(finalResult.equals(""))) {
+            if (!(finalResult.equals("")) && !isAnAlbum) {
                 this.elementsFromRdf.set(i, finalResult);
                 tmpArray.add(finalResult);
             }
+
         }
         this.listOfSongOfDifferentArtists.add(tmpArray);
     }
 
     /**
      * This function gets back all the song of the same albums
+     *
      * @param index
      */
     public void getBackJustSong(int index) {
@@ -159,6 +173,7 @@ public class CleanRdf {
     /**
      * THis function gets back all bands and artists presented
      * in our rdf.
+     *
      * @param index
      */
     public void getBackJustGroups(int index) {
@@ -198,6 +213,7 @@ public class CleanRdf {
     /**
      * This function delete a file located at the path in parameter
      * and recreate it with the same name.
+     *
      * @param path
      */
     public void deleteRecreateFile(String path) {
@@ -216,6 +232,7 @@ public class CleanRdf {
 
     /**
      * This function removes song from array
+     *
      * @param index
      */
     public void removeSongsFromArrayRdf(int index) {
@@ -227,6 +244,7 @@ public class CleanRdf {
     /**
      * THis function gets back all the element from rdf (attributes
      * of the class)
+     *
      * @return
      */
     public ArrayList<String> getElements() {
@@ -235,6 +253,7 @@ public class CleanRdf {
 
     /**
      * This function sets the elementsFromRdf
+     *
      * @param elements
      */
     public void setElements(ArrayList<String> elements) {
@@ -243,6 +262,7 @@ public class CleanRdf {
 
     /**
      * This function gets the list of song
+     *
      * @return
      */
     public ArrayList<String> getSongElements() {
@@ -251,6 +271,7 @@ public class CleanRdf {
 
     /**
      * This function sets the list of song
+     *
      * @param elements
      */
     public void setSongElements(ArrayList<String> elements) {
@@ -259,6 +280,7 @@ public class CleanRdf {
 
     /**
      * This function gets the list of bands.
+     *
      * @return
      */
     public ArrayList<String> getBandElements() {
@@ -267,6 +289,7 @@ public class CleanRdf {
 
     /**
      * This function sets the list of bands
+     *
      * @param elements
      */
     public void setBandElements(ArrayList<String> elements) {
@@ -276,6 +299,7 @@ public class CleanRdf {
     /**
      * THis function gets the list of indexes. This is the reference
      * of all </rdf> balises
+     *
      * @return
      */
     public ArrayList<Integer> getListOfIndexes() {
@@ -284,6 +308,7 @@ public class CleanRdf {
 
     /**
      * This function sets the list of indexes.
+     *
      * @param indexes
      */
     public void setListOfIndexes(ArrayList<Integer> indexes) {
@@ -293,6 +318,7 @@ public class CleanRdf {
     /**
      * THis function gets the total list of song from different
      * artists
+     *
      * @return
      */
     public ArrayList<ArrayList<String>> getListOfSongOfDifferentArtists() {
@@ -302,6 +328,7 @@ public class CleanRdf {
     /**
      * This function sets the total list of song from different
      * artists
+     *
      * @param list
      */
     public void setListOfSongOfDifferentArtists(ArrayList<ArrayList<String>> list) {
@@ -360,6 +387,7 @@ public class CleanRdf {
      * Function refactorName. This function refactor the name
      * of the songs, it replaces spaces by "_" and removing
      * unused spaces at the end.
+     *
      * @param list
      * @return
      */
@@ -381,6 +409,7 @@ public class CleanRdf {
     /**
      * This function removes spaces at the end of a song
      * title.
+     *
      * @param word
      * @return
      */
@@ -392,13 +421,13 @@ public class CleanRdf {
         return res;
     }
 
-    public ArrayList<String> removeUnderscore(ArrayList<String> artistList){
+    public ArrayList<String> removeUnderscore(ArrayList<String> artistList) {
 
-        for(int i=0; i<artistList.size();i++){
+        for (int i = 0; i < artistList.size(); i++) {
 
-            artistList.set(i,artistList.get(i).replace("_", " "));
+            artistList.set(i, artistList.get(i).replace("_", " "));
         }
-        System.out.println("list of artist after"+artistList);
+        System.out.println("list of artist after" + artistList);
         return artistList;
     }
 }
