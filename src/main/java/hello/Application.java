@@ -110,11 +110,11 @@ public class Application {
         listSongArtist.add("Hello");
         listSongArtist.add("Rolling in the deep");
 
-        Map<String, List<String>> listArtist = new HashMap<>();
-        listArtist.put("Nirvana", listSongArtist);
-        listArtist.put("Adele", listSongArtist2);
+        Map<String, List<String>> mapArtist = new HashMap<>();
+        mapArtist.put("Nirvana", listSongArtist);
+        mapArtist.put("Adele", listSongArtist2);
 
-        OntologieClass.add(ontologie, 1, "Yesterday", "Beatles", listSong, listArtist);
+        OntologieClass.add(ontologie, 1, "Yesterday", "Beatles", listSong, mapArtist);
 
         OntologieClass.write(ontologie);
 
