@@ -79,7 +79,7 @@ public class YoutubeQuerry {
             // Restrict the search results to only include videos. See:
             // https://developers.google.com/youtube/v3/docs/search/list#type
             search.setType("video");
-            search.setOrder("viewCount");
+            //search.setOrder("viewCount");
             // To increase efficiency, only retrieve the fields that the
             // application uses.
             search.setFields("items(id/kind,id/videoId,snippet/title,snippet/thumbnails/default/url)");
