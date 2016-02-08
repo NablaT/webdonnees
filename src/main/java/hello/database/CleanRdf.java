@@ -17,6 +17,10 @@ public class CleanRdf {
     private ArrayList<String> bandElements;
     private ArrayList<Integer> listOfIndexes;
     private ArrayList<ArrayList<String>> listOfSongOfDifferentArtists;
+    //Some of the groups have the following structure groupeName_(groupe)
+    // We need to save these groups name to be able to reload the
+    // correct http request
+    private ArrayList<String> saveArtistWithQuoteGroup;
 
 
     private String pathSongs;
@@ -31,6 +35,7 @@ public class CleanRdf {
         this.elementsFromRdf = new ArrayList<>();
         this.listOfIndexes = new ArrayList<Integer>();
         this.listOfSongOfDifferentArtists = new ArrayList<ArrayList<String>>();
+        this.saveArtistWithQuoteGroup=new ArrayList<>();
         this.pathArtists = "./artists.txt";
         this.pathSongs = "songs.txt";
         //initialiseSongArtist();
@@ -196,6 +201,9 @@ public class CleanRdf {
                 }
             }
             finalResult = finalResult.replace("/", "");
+            if(finalResult.contains("groupe")){
+                this.saveArtistWithQuoteGroup.add(finalResult);
+            }
             finalResult = finalResult.replace("_", " ");
             String stringToSplit3 = "\\(";
             String[] almostFinal = finalResult.split(stringToSplit3);
@@ -336,6 +344,14 @@ public class CleanRdf {
     }
 
     /**
+     * This function gets the list of saved group with the following
+     * format: groupName_(groupe)
+     * @return
+     */
+    public ArrayList<String> getSaveArtistWithQuoteGroup(){
+        return this.saveArtistWithQuoteGroup;
+    }
+    /**
      * This function cleans the attributes elementsFromRdf when
      * an element is empty (equals to "").
      */
@@ -401,6 +417,16 @@ public class CleanRdf {
                 currentWord = removeSpaceAtEnd(currentWord);
             }
             currentWord = currentWord.replace(" ", "_");
+            System.out.println("OUR CURRENT WORD: "+currentWord);
+            for(int j=0;j<this.saveArtistWithQuoteGroup.size();j++){
+                //System.out.println("current quote group: "+this.saveArtistWithQuoteGroup.get(j));
+                if(this.saveArtistWithQuoteGroup.get(j).contains(currentWord)){
+                    System.out.println("we are in the if; seems to have a (group) "+this.saveArtistWithQuoteGroup.get(j));
+                    System.out.println("in fact we have the following name: "+currentWord);
+                    currentWord=this.saveArtistWithQuoteGroup.get(j);
+                    currentWord = currentWord.replace(" ", "_");
+                }
+            }
             list.set(i, currentWord);
         }
         return list;
@@ -424,7 +450,11 @@ public class CleanRdf {
     public ArrayList<String> removeUnderscore(ArrayList<String> artistList) {
 
         for (int i = 0; i < artistList.size(); i++) {
-
+            String stringToSplit3 = "\\(";
+            String[] almostFinal = artistList.get(i).split(stringToSplit3);
+            if (almostFinal.length > 0) {
+                artistList.set(i, almostFinal[0]);
+            }
             artistList.set(i, artistList.get(i).replace("_", " "));
         }
         System.out.println("list of artist after" + artistList);

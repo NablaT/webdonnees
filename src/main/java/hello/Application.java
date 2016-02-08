@@ -38,6 +38,7 @@ public class Application {
         CleanRdf rdfContent = new CleanRdf();
         rdfContent.getBackRdfContent("data.rdf", true);
 
+        System.out.println("groupeName: "+rdfContent.getSaveArtistWithQuoteGroup());
         rdfContent.cleanElements();
 
         //Initialisation de la liste des chansons
@@ -136,6 +137,7 @@ public class Application {
         }
         Map<String, Long> map3;
 
+        ArrayList<Map> finalSongArtistList=new ArrayList<>();
         for (int i = 0; i < globalSongBandList.size(); i++) {
             System.out.println("je rentre une seule fois");
             if(globalSongBandList.get(i).size()>0){
@@ -145,6 +147,7 @@ public class Application {
                 for (String s : map3.keySet()) {
                     System.out.println("La chanson " + s + " a " + map3.get(s) + " vues");
                 }
+                finalSongArtistList.add(map3);
             }
             else{
                 System.out.println("The array is empty");
@@ -152,6 +155,9 @@ public class Application {
 
         }
 
+        /*for(int i=0;i<finalSongArtistList.size();i++){
+
+        }*/
 
     }
 }
