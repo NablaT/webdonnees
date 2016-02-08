@@ -180,7 +180,13 @@ public class YoutubeQuerry {
 
         for(List<String> s : song) {
             System.out.println("closeSong: "+ s);
-            long view = Integer.parseInt(youtubeRequest(s.get(0), s.get(1)));
+            String result = youtubeRequest(s.get(0), s.get(1));
+            long view;
+            if(result == null) {
+                view = 0;
+            } else {
+                view = Long.parseLong(result);
+            }
             interMap.put(s.get(1), view);
         }
         return returnResult(interMap, 3);
@@ -191,7 +197,13 @@ public class YoutubeQuerry {
 
         for(String s : song) {
             System.out.println("closeArtist: "+ s);
-            long view = Long.parseLong(youtubeRequestArtist(s));
+            String result = youtubeRequestArtist(s);
+            long view;
+            if(result == null) {
+                view = 0;
+            } else {
+                view = Long.parseLong(result);
+            }
             interMap.put(s, view);
         }
         return returnResult(interMap, 5);
