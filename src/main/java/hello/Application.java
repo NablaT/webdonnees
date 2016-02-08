@@ -79,11 +79,6 @@ public class Application {
         //List is the artist list we get back
         list = rdfContent.refactorName(list);
         rdfContent.deleteRecreateFile("data.rdf");
-        /*list.add(currentArtist);
-        list.add("ACDC");
-        list.add("Scorpions");
-        list.add("Aerosmith");
-        list.add("Nirvana");*/
         for (int i = 0; i < list.size(); i++) {
             try {
                 Model m = callDBPedia.run(list.get(i), "songOfArtist");
