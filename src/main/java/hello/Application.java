@@ -63,8 +63,10 @@ public class Application {
         //On met la list des chansons associées a leurs artistes ex: [beatles,yesterday]
         Map<String, Long> map = new YoutubeQuerry().closeSong(songBandList);
 
+        ArrayList<String> songAlbum = new ArrayList<>();
         for (String s : map.keySet()) {
             System.out.println("La chanson " + s + " a " + map.get(s) + " vues");
+            songAlbum.add(s);
         }
 
 
@@ -113,17 +115,20 @@ public class Application {
         }
         Map<String, Long> map3;
 
-        ArrayList<Map> finalSongArtistList=new ArrayList<>();
+        ArrayList<Map> allArtistAndSong=new ArrayList<>();
         for (int i = 0; i < globalSongBandList.size(); i++) {
             System.out.println("je rentre une seule fois");
             if(globalSongBandList.get(i).size()>0){
                 System.out.println("je te donne: "+ globalSongBandList.get(i));
                 map3 = new YoutubeQuerry().closeSong(globalSongBandList.get(i));
-
+                ArrayList<String> currentSong=new ArrayList<>();
                 for (String s : map3.keySet()) {
                     System.out.println("La chanson " + s + " a " + map3.get(s) + " vues");
+                    currentSong.add(s);
                 }
-                finalSongArtistList.add(map3);
+                Map<String,ArrayList<String>> currentMap= new HashMap<>();
+                currentMap.put(list.get(i),currentSong);
+                allArtistAndSong.add(currentMap);
             }
             else{
                 System.out.println("The array is empty");
@@ -131,10 +136,11 @@ public class Application {
 
         }
 
-        /*for(int i=0;i<finalSongArtistList.size();i++){
 
-        }
+        System.out.println("songAlbum: "+songAlbum);
+        System.out.println("allArtistAndSong: "+allArtistAndSong);
 
+/*
         Ontologie OntologieClass = new Ontologie();
         OntModel ontologie = OntologieClass.load();
 
