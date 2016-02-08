@@ -34,7 +34,6 @@ public class Application {
 
 
         SpringApplication.run(Application.class, args);
-
         //On initialise la classe qui gere le contenu du rdf
         CleanRdf rdfContent = new CleanRdf();
         rdfContent.getBackRdfContent("data.rdf", true);
@@ -93,10 +92,23 @@ public class Application {
         Ontologie OntologieClass = new Ontologie();
         OntModel ontologie = OntologieClass.load();
 
-        OntClass song = ontologie.getOntClass("http://notreOnthologie#Song");
-        System.out.println(song);
-        ontologie.createIndividual("http://notreOnthologie#Hello", song);
-        ontologie.createIndividual("http://notreOnthologie#Rude!", song);
+        List<String> listSong = new ArrayList<>();
+        listSong.add("Help!");
+        listSong.add("I Need You");
+
+        List<String> listSongArtist = new ArrayList<>();
+        listSongArtist.add("Smell like teen's spirit");
+        listSongArtist.add("Lithium");
+
+        List<String> listSongArtist2 = new ArrayList<>();
+        listSongArtist2.add("Hello");
+        listSongArtist2.add("Rolling in the deep");
+
+        Map<String, List<String>> mapArtist = new HashMap<>();
+        mapArtist.put("Nirvana", listSongArtist);
+        mapArtist.put("Adele", listSongArtist2);
+
+        OntologieClass.add(ontologie, 1, "Yesterday", "Beatles", listSong, mapArtist);
 
         OntologieClass.write(ontologie);
 
