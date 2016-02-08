@@ -33,7 +33,7 @@ public class CleanRdf {
         this.listOfSongOfDifferentArtists = new ArrayList<ArrayList<String>>();
         this.pathArtists = "./artists.txt";
         this.pathSongs = "songs.txt";
-        initialiseSongArtist();
+        //initialiseSongArtist();
     }
 
     /**
@@ -352,7 +352,7 @@ public class CleanRdf {
             }
             reader.close();
         } catch (Exception e) {
-            System.out.println(e);
+            System.err.println(e);
         }
     }
 

@@ -86,6 +86,7 @@ public class Ontologie {
         ObjectProperty hasPopularSong = ontologie.createObjectProperty (namespace + "hasPopularSong");
         hasPopularSong.setDomain(artist);
         hasPopularSong.setRange(song);
+        hasPopularSong.addInverseOf(hasArtist);
         ObjectProperty hasListened = ontologie.createObjectProperty (namespace + "haslistened");
         hasListened.setDomain(profil);
         hasListened.setRange(song);
@@ -147,16 +148,16 @@ public class Ontologie {
         }
     }
 
-    private void addCloseArtistToSong(OntModel ontologie, Individual songInd, Map<String, List<String>> closeArtist) {
+    private void addCloseArtistToSong(OntModel ontologie, Individual songInd, Map<String, List<String>> mapArtist) {
         Property hasCloseArtist = ontologie.getProperty(namespace + "hasCloseArtist");
         Property hasPopularSong = ontologie.getProperty(namespace + "hasPopularSong");
-        for(String s : closeArtist.keySet()) {
+        for(String s : mapArtist.keySet()) {
             Individual artistInd = createArtist(ontologie, s);
-            songInd.addProperty(hasCloseArtist, artistInd);
-            for(String s2 : closeArtist.get(s)) {
+            for(String s2 : mapArtist.get(s)) {
                 Individual songPopInd = createSong(ontologie, s2);
                 artistInd.addProperty(hasPopularSong, songPopInd);
             }
+            songInd.addProperty(hasCloseArtist, artistInd);
         }
     }
 

@@ -107,8 +107,8 @@ public class Application {
         listSongArtist.add("Lithium");
 
         List<String> listSongArtist2 = new ArrayList<>();
-        listSongArtist.add("Hello");
-        listSongArtist.add("Rolling in the deep");
+        listSongArtist2.add("Hello");
+        listSongArtist2.add("Rolling in the deep");
 
         Map<String, List<String>> mapArtist = new HashMap<>();
         mapArtist.put("Nirvana", listSongArtist);
