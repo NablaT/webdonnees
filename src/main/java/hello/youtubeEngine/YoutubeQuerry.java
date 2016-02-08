@@ -94,7 +94,9 @@ public class YoutubeQuerry {
             List<Video> videoList = listResponse.getItems();
 
             if (searchResultList != null && videoList != null) {
-                return "" + videoList.get(0).getStatistics().getViewCount();
+                String count = "" + videoList.get(0).getStatistics().getViewCount();
+                //System.out.println(count);
+                return count;
             }
         } catch (GoogleJsonResponseException e) {
             System.err.println("There was a service error: " + e.getDetails().getCode() + " : "
@@ -181,6 +183,7 @@ public class YoutubeQuerry {
         for(List<String> s : song) {
             System.out.println("closeSong: "+ s);
             String result = youtubeRequest(s.get(0), s.get(1));
+            //System.out.println(result);
             long view;
             if(result == null) {
                 view = 0;
@@ -198,6 +201,7 @@ public class YoutubeQuerry {
         for(String s : song) {
             System.out.println("closeArtist: "+ s);
             String result = youtubeRequestArtist(s);
+            //System.out.println(result);
             long view;
             if(result == null) {
                 view = 0;

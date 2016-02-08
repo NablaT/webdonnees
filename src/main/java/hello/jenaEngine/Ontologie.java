@@ -26,24 +26,22 @@ import java.util.logging.Logger;
  * Created by jonathan on 07/02/16.
  */
 public class Ontologie {
+    String namespace = "http://notreOnthologie#";
 
     public OntModel load() {
         FileInputStream in;
         OntModel ontologie = ModelFactory.createOntologyModel();
         try
         {
-            in=new FileInputStream("ontologie.xml");
+            in=new FileInputStream("ontologie.owl");
             if(in.read() > 0) {
-                System.out.println("Je passe dans le if");
-                ontologie.read("ontologie.xml");
+                ontologie.read("ontologie.owl");
             } else {
-                System.out.println("Je passe dans le else");
                 ontologie = create();
             }
         }
         catch (Exception ex)
         {
-            System.out.println("Je passe dans le catch");
             ontologie = create();
         }
 
@@ -54,7 +52,7 @@ public class Ontologie {
         FileOutputStream fichierSortie = null;
 
         try {
-            fichierSortie = new FileOutputStream("ontologie.xml");
+            fichierSortie = new FileOutputStream("ontologie.owl");
         }
         catch (FileNotFoundException ex) {
             System.out.println(ex);
@@ -68,7 +66,6 @@ public class Ontologie {
 
         // créer un modèle vide
         OntModel ontologie = ModelFactory.createOntologyModel();
-        String namespace = "http://notreOnthologie#";
         ontologie.createOntology (namespace);
 
         //Création des classes
@@ -108,5 +105,73 @@ public class Ontologie {
         hasYoutubeView.setRange(XSD.xlong);
 
         return ontologie;
+    }
+
+    public void add(OntModel ontologie, int id, String song, String artist, List<String> closeSongAlbum, List<String> closeArtist) {
+        Individual profilInd = createProfil(ontologie, id);
+        Individual songInd = createSong(ontologie, song);
+        Individual artistInd = createArtist(ontologie, artist);
+        addSongToProfil(ontologie, profilInd, songInd);
+        addArtistToSong(ontologie, songInd, artistInd);
+        addCloseSongAlbumToSong(ontologie, songInd, artistInd,closeSongAlbum);
+        addCloseArtistToSong(ontologie, songInd, closeArtist);
+    }
+
+    private Individual createArtist(OntModel ontologie, String artist) {
+        Individual individual = ontologie.getIndividual(namespace + artist);
+        if(individual != null) {
+            return individual;
+        } else {
+            OntClass artistClass = ontologie.getOntClass(namespace + "Artist");
+            return ontologie.createIndividual(namespace + artist, artistClass);
+        }
+    }
+
+    private Individual createSong(OntModel ontologie, String song) {
+        Individual individual = ontologie.getIndividual(namespace + song);
+        if(individual != null) {
+            return individual;
+        } else {
+            OntClass artistClass = ontologie.getOntClass(namespace + "Song");
+            return ontologie.createIndividual(namespace + song, artistClass);
+        }
+    }
+
+    private Individual createProfil(OntModel ontologie, int id) {
+        Individual individual = ontologie.getIndividual(namespace + "" + id);
+        if(individual != null) {
+            return individual;
+        } else {
+            OntClass artistClass = ontologie.getOntClass(namespace + "Profil");
+            return ontologie.createIndividual(namespace + "" + id, artistClass);
+        }
+    }
+
+    private void addCloseArtistToSong(OntModel ontologie, Individual songInd, List<String> closeArtist) {
+        Property property = ontologie.getProperty(namespace + "hasCloseArtist");
+        for(String s : closeArtist) {
+            Individual artistInd = createArtist(ontologie, s);
+            songInd.addProperty(property, artistInd);
+        }
+    }
+
+    private void addCloseSongAlbumToSong(OntModel ontologie, Individual songInd, Individual artistInd, List<String> closeSongAlbum) {
+        Property hasArtist = ontologie.getProperty(namespace + "hasArtist");
+        Property hasAlbumSong = ontologie.getProperty(namespace + "hasAlbumSong");
+        for(String s : closeSongAlbum) {
+            Individual songAlbumInd = createSong(ontologie, s);
+            songAlbumInd.addProperty(hasArtist, artistInd);
+            songInd.addProperty(hasAlbumSong, songAlbumInd);
+        }
+    }
+
+    private void addArtistToSong(OntModel ontologie, Individual songInd, Individual artistInd) {
+        Property property = ontologie.getProperty(namespace + "hasArtist");
+        songInd.addProperty(property, artistInd);
+    }
+
+    private void addSongToProfil(OntModel ontologie, Individual profilInd, Individual songInd) {
+        Property property = ontologie.getProperty(namespace + "haslistened");
+        profilInd.addProperty(property, songInd);
     }
 }

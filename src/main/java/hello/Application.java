@@ -98,10 +98,15 @@ public class Application {
         Ontologie OntologieClass = new Ontologie();
         OntModel ontologie = OntologieClass.load();
 
-        OntClass song = ontologie.getOntClass("http://notreOnthologie#Song");
-        System.out.println(song);
-        ontologie.createIndividual("http://notreOnthologie#Hello", song);
-        ontologie.createIndividual("http://notreOnthologie#Rude!", song);
+        List<String> listSong = new ArrayList<>();
+        listSong.add("Help!");
+        listSong.add("I Need You");
+
+        List<String> listArtist = new ArrayList<>();
+        listArtist.add("Nirvana");
+        listArtist.add("AC/DC");
+
+        OntologieClass.add(ontologie, 1, "Yesterday", "Beatles", listSong, listArtist);
 
         OntologieClass.write(ontologie);
 
