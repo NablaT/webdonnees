@@ -107,7 +107,7 @@ public class Ontologie {
         return ontologie;
     }
 
-    public void add(OntModel ontologie, int id, String song, String artist, List<String> closeSongAlbum, List<String> closeArtist) {
+    public void add(OntModel ontologie, int id, String song, String artist, List<String> closeSongAlbum, Map<String ,List<String>> closeArtist) {
         Individual profilInd = createProfil(ontologie, id);
         Individual songInd = createSong(ontologie, song);
         Individual artistInd = createArtist(ontologie, artist);
@@ -147,11 +147,16 @@ public class Ontologie {
         }
     }
 
-    private void addCloseArtistToSong(OntModel ontologie, Individual songInd, List<String> closeArtist) {
-        Property property = ontologie.getProperty(namespace + "hasCloseArtist");
-        for(String s : closeArtist) {
+    private void addCloseArtistToSong(OntModel ontologie, Individual songInd, Map<String, List<String>> closeArtist) {
+        Property hasCloseArtist = ontologie.getProperty(namespace + "hasCloseArtist");
+        Property hasPopularSong = ontologie.getProperty(namespace + "hasPopularSong");
+        for(String s : closeArtist.keySet()) {
             Individual artistInd = createArtist(ontologie, s);
-            songInd.addProperty(property, artistInd);
+            songInd.addProperty(hasCloseArtist, artistInd);
+            for(String s2 : closeArtist.get(s)) {
+                Individual songPopInd = createSong(ontologie, s2);
+                artistInd.addProperty(hasPopularSong, songPopInd);
+            }
         }
     }
 

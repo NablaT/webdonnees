@@ -348,7 +348,6 @@ public class CleanRdf {
             BufferedReader reader = new BufferedReader(new InputStreamReader(input));
             String line;
             while ((line = reader.readLine()) != null) {
-                System.out.println(line);
                 this.elementsFromRdf.add(line);
             }
             reader.close();
