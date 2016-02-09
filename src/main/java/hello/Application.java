@@ -151,7 +151,7 @@ public class Application {
         OntModel ontologie = OntologieClass.load();
 
 
-        OntologieClass.add(ontologie, 1, song, artist, songAlbum, allArtistAndSong);
+        OntologieClass.add(ontologie, id, song, artist, songAlbum, allArtistAndSong);
 
         OntologieClass.write(ontologie);
 
