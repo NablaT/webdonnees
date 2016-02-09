@@ -25,6 +25,9 @@ public class CleanRdf {
 
     private String pathSongs;
     private String pathArtists;
+    private String currentSong;
+    private String currentBand;
+    private int idUser;
 
     /**
      * Default constructor. Initializes all attributes of the class
@@ -38,6 +41,9 @@ public class CleanRdf {
         this.saveArtistWithQuoteGroup=new ArrayList<>();
         this.pathArtists = "./artists.txt";
         this.pathSongs = "songs.txt";
+        this.currentSong="";
+        this.currentBand="";
+        this.idUser=initialiseUserID();
         //initialiseSongArtist();
     }
 
@@ -58,8 +64,22 @@ public class CleanRdf {
             }
             BufferedReader reader = new BufferedReader(new FileReader(pathFile));
             String line;
+            int index=0;
+            boolean songHasBeenFound=false;
             while ((line = reader.readLine()) != null) {
                 this.elementsFromRdf.add(line);
+                if(line.contains("<rdf:Description") && firstTime){
+                    if(!songHasBeenFound){
+                        this.currentSong=getCurrentSongOrBand(line);
+                        songHasBeenFound=true;
+                    }
+                    else{
+                        this.currentBand=getCurrentSongOrBand(line);
+                        //this.currentBand.replace("_"," ");
+                        //System.out.println("give me the line: "+line);
+                    }
+                }
+                index++;
             }
             reader.close();
 
@@ -351,6 +371,38 @@ public class CleanRdf {
     public ArrayList<String> getSaveArtistWithQuoteGroup(){
         return this.saveArtistWithQuoteGroup;
     }
+
+    /**
+     * This functions gets the current song we are working with.
+     * @return
+     */
+    public String getSong(){
+        return this.currentSong;
+    }
+
+    /**
+     * This function gets the current band we are working with.
+     * @return
+     */
+    public String getBand(){
+        return this.currentBand;
+    }
+
+    /**
+     * This function gets the user id.
+     * @return
+     */
+    public int getIdUser(){
+        return this.idUser;
+    }
+
+    /**
+     * This function initialises the user id.
+     * @return
+     */
+    public int initialiseUserID(){
+        return (int)(Math.random() * (15000-0)) + 0;
+    }
     /**
      * This function cleans the attributes elementsFromRdf when
      * an element is empty (equals to "").
@@ -460,4 +512,18 @@ public class CleanRdf {
         System.out.println("list of artist after" + artistList);
         return artistList;
     }
+
+    public String getCurrentSongOrBand(String line){
+        String song="";
+        String[] arrayOfLine= line.split("#");
+        if(arrayOfLine.length>0){
+            for(int i=0; i<arrayOfLine[1].length()-2;i++){
+                song=song+arrayOfLine[1].charAt(i);
+            }
+
+        }
+        System.out.println("SONG OR BAND:: "+song);
+        return song;
+    }
+
 }

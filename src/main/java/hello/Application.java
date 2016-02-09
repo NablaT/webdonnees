@@ -139,15 +139,20 @@ public class Application {
 
         System.out.println("songAlbum: "+songAlbum);
         System.out.println("allArtistAndSong: "+allArtistAndSong);
+        String song=rdfContent.getSong();
+        System.out.println("song: "+song);
+        String artist=rdfContent.getBand();
+        System.out.println("artist: "+artist);
+        int id=rdfContent.getIdUser();
+        System.out.println("user id: "+id);
 
-/*
         Ontologie OntologieClass = new Ontologie();
         OntModel ontologie = OntologieClass.load();
 
 
         OntologieClass.add(ontologie, 1, song, artist, songAlbum, allArtistAndSong);
 
-        OntologieClass.write(ontologie);*/
+        OntologieClass.write(ontologie);
 
 
     }
