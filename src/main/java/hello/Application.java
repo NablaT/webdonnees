@@ -38,7 +38,7 @@ public class Application {
         CleanRdf rdfContent = new CleanRdf();
         rdfContent.getBackRdfContent("data.rdf", true);
 
-        System.out.println("groupeName: "+rdfContent.getSaveArtistWithQuoteGroup());
+        //System.out.println("groupeName: "+rdfContent.getSaveArtistWithQuoteGroup());
         rdfContent.cleanElements();
 
         //Initialisation de la liste des chansons
@@ -59,7 +59,7 @@ public class Application {
         listOfArtists = rdfContent.getBandElements();
 
 
-        System.out.println("song band list: "+songBandList);
+        //System.out.println("song band list: "+songBandList);
         //On met la list des chansons associées a leurs artistes ex: [beatles,yesterday]
         Map<String, Long> map = new YoutubeQuerry().closeSong(songBandList);
 
@@ -99,7 +99,7 @@ public class Application {
 
         //On cree le couple [nom du groupe, chanson]
         //On veut récuperer ces couples pour toutes les chansons des 5 artistes
-        System.out.println("list of artiste before: "+ list);
+        //System.out.println("list of artiste before: "+ list);
         list=rdfContent.removeUnderscore(list);
         List<List<List<String>>> globalSongBandList = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
@@ -111,16 +111,16 @@ public class Application {
                 songBandList2.add(tmpArray);
             }
             globalSongBandList.add(songBandList2);
-            System.out.println("globalsongbandlist: " + globalSongBandList.get(i));
+            //System.out.println("globalsongbandlist: " + globalSongBandList.get(i));
         }
         Map<String, Long> map3;
 
        // ArrayList<Map> allArtistAndSong=new ArrayList<>();
         Map<String,List<String>> allArtistAndSong= new HashMap<>();
         for (int i = 0; i < globalSongBandList.size(); i++) {
-            System.out.println("je rentre une seule fois");
+            //System.out.println("je rentre une seule fois");
             if(globalSongBandList.get(i).size()>0){
-                System.out.println("je te donne: "+ globalSongBandList.get(i));
+                //System.out.println("je te donne: "+ globalSongBandList.get(i));
                 map3 = new YoutubeQuerry().closeSong(globalSongBandList.get(i));
                 List<String> currentSong=new ArrayList<>();
                 for (String s : map3.keySet()) {

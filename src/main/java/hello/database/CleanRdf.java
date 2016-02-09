@@ -138,7 +138,7 @@ public class CleanRdf {
             finalResult = finalResult.replace("/", "");
             finalResult = finalResult.replace("_", " ");
             boolean isAnAlbum=false;
-            System.out.println("almost final: "+ finalResult);
+            //System.out.println("almost final: "+ finalResult);
             if (finalResult.contains("album") || finalResult.contains("chanson")) {
                 isAnAlbum=true;
             }
@@ -247,12 +247,12 @@ public class CleanRdf {
     public void deleteRecreateFile(String path) {
         Path mypath = Paths.get(path);
         try {
-            System.out.println("jerentre");
+            //System.out.println("jerentre");
             Files.delete(mypath);
             //Files.write(mypath);
             PrintWriter writer = new PrintWriter(path);
             writer.close();
-            System.out.println("jessort");
+            //System.out.println("jessort");
         } catch (Exception e) {
             System.out.println("Error in deleting/creating file data.rdf");
         }
@@ -469,12 +469,12 @@ public class CleanRdf {
                 currentWord = removeSpaceAtEnd(currentWord);
             }
             currentWord = currentWord.replace(" ", "_");
-            System.out.println("OUR CURRENT WORD: "+currentWord);
+            //System.out.println("OUR CURRENT WORD: "+currentWord);
             for(int j=0;j<this.saveArtistWithQuoteGroup.size();j++){
                 //System.out.println("current quote group: "+this.saveArtistWithQuoteGroup.get(j));
                 if(this.saveArtistWithQuoteGroup.get(j).contains(currentWord)){
-                    System.out.println("we are in the if; seems to have a (group) "+this.saveArtistWithQuoteGroup.get(j));
-                    System.out.println("in fact we have the following name: "+currentWord);
+                    //System.out.println("we are in the if; seems to have a (group) "+this.saveArtistWithQuoteGroup.get(j));
+                    //System.out.println("in fact we have the following name: "+currentWord);
                     currentWord=this.saveArtistWithQuoteGroup.get(j);
                     currentWord = currentWord.replace(" ", "_");
                 }
@@ -509,7 +509,7 @@ public class CleanRdf {
             }
             artistList.set(i, artistList.get(i).replace("_", " "));
         }
-        System.out.println("list of artist after" + artistList);
+       // System.out.println("list of artist after" + artistList);
         return artistList;
     }
 
@@ -522,7 +522,7 @@ public class CleanRdf {
             }
 
         }
-        System.out.println("SONG OR BAND:: "+song);
+        //System.out.println("SONG OR BAND:: "+song);
         return song;
     }
 

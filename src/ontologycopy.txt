@@ -1,0 +1,163 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:j.0="http://notreOnthologie#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+  <owl:Ontology rdf:about="http://notreOnthologie#"/>
+  <owl:Class rdf:about="http://notreOnthologie#Song"/>
+  <owl:Class rdf:about="http://notreOnthologie#Profil"/>
+  <owl:Class rdf:about="http://notreOnthologie#Artist"/>
+  <owl:ObjectProperty rdf:about="http://notreOnthologie#haslistened">
+    <rdfs:range rdf:resource="http://notreOnthologie#Song"/>
+    <rdfs:domain rdf:resource="http://notreOnthologie#Profil"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://notreOnthologie#hasArtist">
+    <rdfs:range rdf:resource="http://notreOnthologie#Artist"/>
+    <rdfs:domain rdf:resource="http://notreOnthologie#Song"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://notreOnthologie#hasPopularSong">
+    <owl:inverseOf rdf:resource="http://notreOnthologie#hasArtist"/>
+    <rdfs:range rdf:resource="http://notreOnthologie#Song"/>
+    <rdfs:domain rdf:resource="http://notreOnthologie#Artist"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://notreOnthologie#hasCloseSong">
+    <rdfs:range rdf:resource="http://notreOnthologie#Song"/>
+    <rdfs:domain rdf:resource="http://notreOnthologie#Song"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://notreOnthologie#hasCloseArtist">
+    <rdfs:range rdf:resource="http://notreOnthologie#Artist"/>
+    <rdfs:domain rdf:resource="http://notreOnthologie#Song"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://notreOnthologie#hasAlbumSong">
+    <rdfs:range rdf:resource="http://notreOnthologie#Song"/>
+    <rdfs:domain rdf:resource="http://notreOnthologie#Song"/>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="http://notreOnthologie#hasYoutubeView">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#long"/>
+    <rdfs:domain rdf:resource="http://notreOnthologie#Song"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://notreOnthologie#hasBeenSeen">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="http://notreOnthologie#Song"/>
+  </owl:DatatypeProperty>
+  <j.0:Profil rdf:about="http://notreOnthologie#1">
+    <j.0:haslistened>
+      <j.0:Song rdf:about="http://notreOnthologie#Yesterday">
+        <j.0:hasCloseArtist>
+          <j.0:Artist rdf:about="http://notreOnthologie#Love ">
+            <j.0:hasPopularSong>
+              <j.0:Song rdf:about="http://notreOnthologie#Forever Changes"/>
+            </j.0:hasPopularSong>
+            <j.0:hasPopularSong>
+              <j.0:Song rdf:about="http://notreOnthologie#Da Capo"/>
+            </j.0:hasPopularSong>
+          </j.0:Artist>
+        </j.0:hasCloseArtist>
+        <j.0:hasCloseArtist>
+          <j.0:Artist rdf:about="http://notreOnthologie#Nirvana">
+            <j.0:hasPopularSong>
+              <j.0:Song rdf:about="http://notreOnthologie#Lithium"/>
+            </j.0:hasPopularSong>
+            <j.0:hasPopularSong>
+              <j.0:Song rdf:about="http://notreOnthologie#Smell like teen&apos;s spirit"/>
+            </j.0:hasPopularSong>
+          </j.0:Artist>
+        </j.0:hasCloseArtist>
+        <j.0:hasAlbumSong>
+          <j.0:Song rdf:about="http://notreOnthologie#Help!">
+            <j.0:hasArtist>
+              <j.0:Artist rdf:about="http://notreOnthologie#Beatles"/>
+            </j.0:hasArtist>
+          </j.0:Song>
+        </j.0:hasAlbumSong>
+        <j.0:hasCloseArtist>
+          <j.0:Artist rdf:about="http://notreOnthologie#Nirvana ">
+            <j.0:hasPopularSong>
+              <j.0:Song rdf:about="http://notreOnthologie#Smells Like Teen Spirit"/>
+            </j.0:hasPopularSong>
+            <j.0:hasPopularSong>
+              <j.0:Song rdf:about="http://notreOnthologie#In Bloom"/>
+            </j.0:hasPopularSong>
+            <j.0:hasPopularSong>
+              <j.0:Song rdf:about="http://notreOnthologie#Heart-Shaped Box"/>
+            </j.0:hasPopularSong>
+          </j.0:Artist>
+        </j.0:hasCloseArtist>
+        <j.0:hasArtist>
+          <j.0:Artist rdf:about="http://notreOnthologie#The_Beatles"/>
+        </j.0:hasArtist>
+        <j.0:hasCloseArtist>
+          <j.0:Artist rdf:about="http://notreOnthologie#System of a Down">
+            <j.0:hasPopularSong>
+              <j.0:Song rdf:about="http://notreOnthologie#Sugar"/>
+            </j.0:hasPopularSong>
+            <j.0:hasPopularSong>
+              <j.0:Song rdf:about="http://notreOnthologie#Hypnotize"/>
+            </j.0:hasPopularSong>
+            <j.0:hasPopularSong>
+              <j.0:Song rdf:about="http://notreOnthologie#Toxicity"/>
+            </j.0:hasPopularSong>
+          </j.0:Artist>
+        </j.0:hasCloseArtist>
+        <j.0:hasAlbumSong>
+          <j.0:Song rdf:about="http://notreOnthologie#You Can&apos;t Do That">
+            <j.0:hasArtist rdf:resource="http://notreOnthologie#The_Beatles"/>
+          </j.0:Song>
+        </j.0:hasAlbumSong>
+        <j.0:hasAlbumSong>
+          <j.0:Song rdf:about="http://notreOnthologie#I Need You">
+            <j.0:hasArtist rdf:resource="http://notreOnthologie#Beatles"/>
+          </j.0:Song>
+        </j.0:hasAlbumSong>
+        <j.0:hasCloseArtist>
+          <j.0:Artist rdf:about="http://notreOnthologie#Adele">
+            <j.0:hasPopularSong>
+              <j.0:Song rdf:about="http://notreOnthologie#Rolling in the deep"/>
+            </j.0:hasPopularSong>
+            <j.0:hasPopularSong>
+              <j.0:Song rdf:about="http://notreOnthologie#Hello"/>
+            </j.0:hasPopularSong>
+          </j.0:Artist>
+        </j.0:hasCloseArtist>
+        <j.0:hasArtist rdf:resource="http://notreOnthologie#Beatles"/>
+        <j.0:hasAlbumSong>
+          <j.0:Song rdf:about="http://notreOnthologie#Help! ">
+            <j.0:hasArtist rdf:resource="http://notreOnthologie#The_Beatles"/>
+          </j.0:Song>
+        </j.0:hasAlbumSong>
+        <j.0:hasCloseArtist>
+          <j.0:Artist rdf:about="http://notreOnthologie#Arctic Monkeys">
+            <j.0:hasPopularSong>
+              <j.0:Song rdf:about="http://notreOnthologie#Suck It and See"/>
+            </j.0:hasPopularSong>
+            <j.0:hasPopularSong>
+              <j.0:Song rdf:about="http://notreOnthologie#Whatever People Say I Am, That&apos;s What I&apos;m Not"/>
+            </j.0:hasPopularSong>
+            <j.0:hasPopularSong>
+              <j.0:Song rdf:about="http://notreOnthologie#Favourite Worst Nightmare"/>
+            </j.0:hasPopularSong>
+          </j.0:Artist>
+        </j.0:hasCloseArtist>
+        <j.0:hasAlbumSong>
+          <j.0:Song rdf:about="http://notreOnthologie#Ticket to Ride">
+            <j.0:hasArtist rdf:resource="http://notreOnthologie#The_Beatles"/>
+          </j.0:Song>
+        </j.0:hasAlbumSong>
+        <j.0:hasCloseArtist>
+          <j.0:Artist rdf:about="http://notreOnthologie#Bon Jovi">
+            <j.0:hasPopularSong>
+              <j.0:Song rdf:about="http://notreOnthologie#What About Now"/>
+            </j.0:hasPopularSong>
+            <j.0:hasPopularSong>
+              <j.0:Song rdf:about="http://notreOnthologie#Have a Nice Day"/>
+            </j.0:hasPopularSong>
+            <j.0:hasPopularSong>
+              <j.0:Song rdf:about="http://notreOnthologie#Slippery When Wet"/>
+            </j.0:hasPopularSong>
+          </j.0:Artist>
+        </j.0:hasCloseArtist>
+      </j.0:Song>
+    </j.0:haslistened>
+  </j.0:Profil>
+</rdf:RDF>
