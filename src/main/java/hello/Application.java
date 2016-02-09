@@ -115,20 +115,21 @@ public class Application {
         }
         Map<String, Long> map3;
 
-        ArrayList<Map> allArtistAndSong=new ArrayList<>();
+       // ArrayList<Map> allArtistAndSong=new ArrayList<>();
+        Map<String,List<String>> allArtistAndSong= new HashMap<>();
         for (int i = 0; i < globalSongBandList.size(); i++) {
             System.out.println("je rentre une seule fois");
             if(globalSongBandList.get(i).size()>0){
                 System.out.println("je te donne: "+ globalSongBandList.get(i));
                 map3 = new YoutubeQuerry().closeSong(globalSongBandList.get(i));
-                ArrayList<String> currentSong=new ArrayList<>();
+                List<String> currentSong=new ArrayList<>();
                 for (String s : map3.keySet()) {
                     System.out.println("La chanson " + s + " a " + map3.get(s) + " vues");
                     currentSong.add(s);
                 }
-                Map<String,ArrayList<String>> currentMap= new HashMap<>();
-                currentMap.put(list.get(i),currentSong);
-                allArtistAndSong.add(currentMap);
+                //Map<String,ArrayList<String>> currentMap= new HashMap<>();
+                allArtistAndSong.put(list.get(i),currentSong);
+                //allArtistAndSong.add(currentMap);
             }
             else{
                 System.out.println("The array is empty");
@@ -136,7 +137,7 @@ public class Application {
 
         }
 
-
+        System.out.println("--------------------------------------------------");
         System.out.println("songAlbum: "+songAlbum);
         System.out.println("allArtistAndSong: "+allArtistAndSong);
         String song=rdfContent.getSong();
